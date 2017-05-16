@@ -1,0 +1,2 @@
+172.26.0.1 - - [16/May/2017:18:44:01 +0000] "GET / HTTP/1.1" 200 123028 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36"
+172.26.0.1 - - [16/May/2017:18:44:01 +0000] "GET /favicon.ico HTTP/1.1" 404 17025 "http://api.booking-system.dev/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36"

@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+  bs_api:
+    restart: always
+    container_name: bs_api
+    build:
+      context: ./api
+    working_dir: /var/www/html/api/
+    command: bundle exec puma -C config/puma.rb
+    volumes:
+      - ./api:/var/www/html/api
+
+  bk_nginx:
+    restart: always
+    container_name: bs_nginx
+    build: images/nginx/development
+    volumes:
+      - ./logs:/var/www/logs
+    ports:
+      - 80:80
+
+  bs_api_db:
+    restart: always
+    container_name: bs_api_db
+    image: postgres:latest
+    environment:
+      - "POSTGRES_DB=booking-system"
+      - "POSTGRES_USER=user"
+      - "POSTGRES_PASSWORD=password"
+
+  bs_client:
+    restart: always
+    container_name: bs_client
+    build:
+          context: ./client
+    working_dir: /var/www/html/client
+    command: npm run start
+    volumes:
+      - ./client:/var/www/html/client
+    ports:
+      - 4200:4200
