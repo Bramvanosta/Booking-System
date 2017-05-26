@@ -4,4 +4,12 @@ MAINTAINER Bram van Osta <bramvanosta@gmail.com>
 
 RUN apt-get update && apt-get install -y bzip2 libfontconfig
 
-RUN npm install -g angular-cli node-sass
+RUN yarn global add angular-cli node-sass
+
+COPY . /var/www/html/client/
+
+WORKDIR /var/www/html/client/
+
+RUN yarn
+
+CMD npm run start
