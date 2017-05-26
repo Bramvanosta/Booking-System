@@ -22,12 +22,12 @@
 class Campground < ApplicationRecord
 
   # == Validations
-  validates :name,        presence: { message: 'Name can not be empty' }
-  validates :address,     presence: { message: 'Address can not be empty' }
-  validates :zip_code,    presence: { message: 'Zip Code can not be empty' }
-  validates :city,        presence: { message: 'City can not be empty' }
-  validates :country,     presence: { message: 'Country can not be empty' }
-  validates :currency,    presence: { message: 'Currency can not be empty' }
+  validates :name, presence: {message: 'Name can not be empty'}
+  validates :address, presence: {message: 'Address can not be empty'}
+  validates :zip_code, presence: {message: 'Zip Code can not be empty'}
+  validates :city, presence: {message: 'City can not be empty'}
+  validates :country, presence: {message: 'Country can not be empty'}
+  validates :currency, presence: {message: 'Currency can not be empty'}
 
   # == Associations
   has_many :users, through: :rights

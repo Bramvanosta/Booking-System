@@ -14,10 +14,10 @@
 class Season < ApplicationRecord
 
   # == Validations
-  validates :name,        presence: { message: 'Name can not be empty' }
-  validates :start_date,  presence: { message: 'Start date can not be empty' }
-  validates :end_date,    presence: { message: 'Start date can not be empty' }
-  validate  :end_after_start
+  validates :name, presence: {message: 'Name can not be empty'}
+  validates :start_date, presence: {message: 'Start date can not be empty'}
+  validates :end_date, presence: {message: 'Start date can not be empty'}
+  validate :end_after_start
 
   # == Associations
   belongs_to :campground

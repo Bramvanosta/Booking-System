@@ -1,44 +1,45 @@
-class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :update, :destroy]
+module Api::V1
+  class BookingsController < ApiController
+    before_action :set_booking, only: [:show, :update, :destroy]
 
-  # GET /bookings
-  def index
-    @bookings = Booking.all
+    # GET /bookings
+    def index
+      @bookings = Booking.all
 
-    render json: @bookings
-  end
-
-  # GET /bookings/1
-  def show
-    render json: @booking
-  end
-
-  # POST /bookings
-  def create
-    @booking = Booking.new(booking_params)
-
-    if @booking.save
-      render json: @booking, status: :created, location: @booking
-    else
-      render json: @booking.errors, status: :unprocessable_entity
+      render json: @bookings
     end
-  end
 
-  # PATCH/PUT /bookings/1
-  def update
-    if @booking.update(booking_params)
+    # GET /bookings/1
+    def show
       render json: @booking
-    else
-      render json: @booking.errors, status: :unprocessable_entity
     end
-  end
 
-  # DELETE /bookings/1
-  def destroy
-    @booking.destroy
-  end
+    # POST /bookings
+    def create
+      @booking = Booking.new(booking_params)
 
-  private
+      if @booking.save
+        render json: @booking, status: :created, location: @booking
+      else
+        render json: @booking.errors, status: :unprocessable_entity
+      end
+    end
+
+    # PATCH/PUT /bookings/1
+    def update
+      if @booking.update(booking_params)
+        render json: @booking
+      else
+        render json: @booking.errors, status: :unprocessable_entity
+      end
+    end
+
+    # DELETE /bookings/1
+    def destroy
+      @booking.destroy
+    end
+
+    private
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
@@ -46,6 +47,7 @@ class BookingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def booking_params
-      params.require(:booking).permit(:campground_id, :buyer_id, :status, :arrival_time, :departure_time)
+      params.require(:booking).permit(:campground_id, :buyer_id, :status, :arrival_date, :departure_date)
     end
+  end
 end

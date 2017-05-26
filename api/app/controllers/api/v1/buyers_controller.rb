@@ -1,44 +1,45 @@
-class BuyersController < ApplicationController
-  before_action :set_buyer, only: [:show, :update, :destroy]
+module Api::V1
+  class BuyersController < ApiController
+    before_action :set_buyer, only: [:show, :update, :destroy]
 
-  # GET /buyers
-  def index
-    @buyers = Buyer.all
+    # GET /buyers
+    def index
+      @buyers = Buyer.all
 
-    render json: @buyers
-  end
-
-  # GET /buyers/1
-  def show
-    render json: @buyer
-  end
-
-  # POST /buyers
-  def create
-    @buyer = Buyer.new(buyer_params)
-
-    if @buyer.save
-      render json: @buyer, status: :created, location: @buyer
-    else
-      render json: @buyer.errors, status: :unprocessable_entity
+      render json: @buyers
     end
-  end
 
-  # PATCH/PUT /buyers/1
-  def update
-    if @buyer.update(buyer_params)
+    # GET /buyers/1
+    def show
       render json: @buyer
-    else
-      render json: @buyer.errors, status: :unprocessable_entity
     end
-  end
 
-  # DELETE /buyers/1
-  def destroy
-    @buyer.destroy
-  end
+    # POST /buyers
+    def create
+      @buyer = Buyer.new(buyer_params)
 
-  private
+      if @buyer.save
+        render json: @buyer, status: :created, location: @buyer
+      else
+        render json: @buyer.errors, status: :unprocessable_entity
+      end
+    end
+
+    # PATCH/PUT /buyers/1
+    def update
+      if @buyer.update(buyer_params)
+        render json: @buyer
+      else
+        render json: @buyer.errors, status: :unprocessable_entity
+      end
+    end
+
+    # DELETE /buyers/1
+    def destroy
+      @buyer.destroy
+    end
+
+    private
     # Use callbacks to share common setup or constraints between actions.
     def set_buyer
       @buyer = Buyer.find(params[:id])
@@ -48,4 +49,5 @@ class BuyersController < ApplicationController
     def buyer_params
       params.require(:buyer).permit(:title, :first_name, :last_name, :email, :address, :zip_code, :city, :country, :phone_number, :mobile_number)
     end
+  end
 end
