@@ -13,6 +13,9 @@
 
 class Payment < ApplicationRecord
 
+  # == Monetize
+  monetize :price_cents
+
   # == Associations
   belongs_to :booking
 

@@ -44,7 +44,9 @@ class User < ApplicationRecord
   validates :password, presence: {message: 'Password can not be empty'}
 
   # == Associations
-  has_many :campgrounds, through: :rights
+  has_many :rights
   has_many :api_keys
+  
+  has_many :campgrounds, through: :rights
 
 end

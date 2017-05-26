@@ -47,6 +47,24 @@ namespace :db do
 
     puts 'Campground created'
 
+    ApiKey.create!(
+        user_id: user.id,
+        campground_id: campground.id,
+        name: 'Test User API Key 1',
+        can_view_bookings: true,
+        can_edit_bookings: false
+    )
+
+    ApiKey.create!(
+        user_id: admin.id,
+        campground_id: campground.id,
+        name: 'Test Admin API Key 1',
+        can_view_bookings: true,
+        can_edit_bookings: true
+    )
+
+    puts 'API Keys created'
+
     # Set viewing rights to user
     Right.create!(
         user_id: user.id,

@@ -16,6 +16,9 @@ class Rental < ApplicationRecord
 
   # == Associations
   belongs_to :rental_category
+
+  has_many :booking_has_rentals
+
   has_many :bookings, through: :booking_has_rentals
 
 end

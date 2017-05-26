@@ -24,9 +24,13 @@ class Booking < ApplicationRecord
   # == Associations
   belongs_to :campground
   belongs_to :client
+
+  has_many :booking_has_rentals
+  has_many :booking_has_persons
+  has_many :payments
+
   has_many :rentals, through: :booking_has_rentals
   has_many :persons, through: :booking_has_persons
-  has_many :payments
 
   # == Functions
   def departure_after_arrival

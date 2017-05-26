@@ -16,7 +16,10 @@ class RentalCategory < ApplicationRecord
 
   # == Associations
   belongs_to :campground
-  has_many :seasons, through: :prices
+
   has_many :rentals
+  has_many :prices
+
+  has_many :seasons, through: :prices
 
 end
