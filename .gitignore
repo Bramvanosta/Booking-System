@@ -4,3 +4,6 @@
 # IDEA files
 /.idea
 
+# Log files
+logs/**/*.log
+
