@@ -18,11 +18,14 @@ ActiveRecord::Schema.define(version: 20170516230529) do
   create_table "api_keys", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "campground_id"
-    t.string "key", null: false
+    t.string "token", null: false
     t.string "name", null: false
+    t.string "can_view_bookings", default: "t"
+    t.string "can_edit_bookings", default: "f"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["campground_id"], name: "index_api_keys_on_campground_id"
+    t.index ["token"], name: "index_api_keys_on_token", unique: true
     t.index ["user_id"], name: "index_api_keys_on_user_id"
   end
 
@@ -91,7 +94,7 @@ ActiveRecord::Schema.define(version: 20170516230529) do
   create_table "payments", force: :cascade do |t|
     t.bigint "booking_id"
     t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
+    t.string "price_currency", default: "EUR", null: false
     t.string "method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -109,8 +112,9 @@ ActiveRecord::Schema.define(version: 20170516230529) do
   create_table "prices", force: :cascade do |t|
     t.bigint "season_id"
     t.bigint "rental_category_id"
+    t.string "name", null: false
     t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
+    t.string "price_currency", default: "EUR", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rental_category_id"], name: "index_prices_on_rental_category_id"
@@ -155,12 +159,31 @@ ActiveRecord::Schema.define(version: 20170516230529) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.string "password", null: false
+    t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "api_keys", "campgrounds"

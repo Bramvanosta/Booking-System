@@ -10,5 +10,12 @@
 #
 
 class Rental < ApplicationRecord
+
+  # == Validations
+  validates :name, presence: { message: 'Name can not be empty' }
+
+  # == Associations
   belongs_to :rental_category
+  has_many :bookings, through: :booking_has_rentals
+
 end

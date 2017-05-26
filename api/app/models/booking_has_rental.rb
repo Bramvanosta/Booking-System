@@ -10,6 +10,9 @@
 #
 
 class BookingHasRental < ApplicationRecord
+
+  # == Associations
   belongs_to :booking
   belongs_to :rental
+
 end

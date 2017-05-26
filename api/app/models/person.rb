@@ -10,5 +10,11 @@
 #
 
 class Person < ApplicationRecord
+
+  # == Validations
+  validates :birth_date, presence: { message: 'Birth date can not be empty' }
+
+  # == Associations
   belongs_to :buyer
+
 end
