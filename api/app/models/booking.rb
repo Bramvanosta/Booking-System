@@ -15,11 +15,11 @@
 class Booking < ApplicationRecord
 
   # == Validations
-  validates :arrival_date,    presence: { message: 'Arrival date can not be empty' },
-                              in_future: { message: 'Arrival date can not be in the past' }
-  validates :departure_date,  presence: { message: 'Departure date can not be empty' },
-                              in_future: { message: 'Departure date can not be in the past' }
-  validate  :departure_after_arrival
+  validates :arrival_date, presence: {message: 'Arrival date can not be empty'},
+            in_future: {message: 'Arrival date can not be in the past'}
+  validates :departure_date, presence: {message: 'Departure date can not be empty'},
+            in_future: {message: 'Departure date can not be in the past'}
+  validate :departure_after_arrival
 
   # == Associations
   belongs_to :campground

@@ -1,44 +1,45 @@
-class CampgroundsController < ApplicationController
-  before_action :set_campground, only: [:show, :update, :destroy]
+module Api::V1
+  class CampgroundsController < ApiController
+    before_action :set_campground, only: [:show, :update, :destroy]
 
-  # GET /campgrounds
-  def index
-    @campgrounds = Campground.all
+    # GET /campgrounds
+    def index
+      @campgrounds = Campground.all
 
-    render json: @campgrounds
-  end
-
-  # GET /campgrounds/1
-  def show
-    render json: @campground
-  end
-
-  # POST /campgrounds
-  def create
-    @campground = Campground.new(campground_params)
-
-    if @campground.save
-      render json: @campground, status: :created, location: @campground
-    else
-      render json: @campground.errors, status: :unprocessable_entity
+      render json: @campgrounds
     end
-  end
 
-  # PATCH/PUT /campgrounds/1
-  def update
-    if @campground.update(campground_params)
+    # GET /campgrounds/1
+    def show
       render json: @campground
-    else
-      render json: @campground.errors, status: :unprocessable_entity
     end
-  end
 
-  # DELETE /campgrounds/1
-  def destroy
-    @campground.destroy
-  end
+    # POST /campgrounds
+    def create
+      @campground = Campground.new(campground_params)
 
-  private
+      if @campground.save
+        render json: @campground, status: :created, location: @campground
+      else
+        render json: @campground.errors, status: :unprocessable_entity
+      end
+    end
+
+    # PATCH/PUT /campgrounds/1
+    def update
+      if @campground.update(campground_params)
+        render json: @campground
+      else
+        render json: @campground.errors, status: :unprocessable_entity
+      end
+    end
+
+    # DELETE /campgrounds/1
+    def destroy
+      @campground.destroy
+    end
+
+    private
     # Use callbacks to share common setup or constraints between actions.
     def set_campground
       @campground = Campground.find(params[:id])
@@ -48,4 +49,5 @@ class CampgroundsController < ApplicationController
     def campground_params
       params.require(:campground).permit(:name, :address, :zip_code, :city, :country, :longitude, :latitude, :logo_url, :website_url, :phone_number, :mobile_number, :currency)
     end
+  end
 end

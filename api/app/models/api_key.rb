@@ -16,7 +16,7 @@
 class ApiKey < ApplicationRecord
 
   # == Validations
-  validates :name, presence: { message: 'Name can not be empty' }
+  validates :name, presence: {message: 'Name can not be empty'}
 
   # == Token
   has_secure_token :token
