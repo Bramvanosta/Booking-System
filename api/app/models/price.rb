@@ -18,6 +18,9 @@ class Price < ApplicationRecord
   validates :name, presence: {message: 'Name can not be empty'}
   validates :price_cents, presence: {message: 'Price can not be empty'}
 
+  # == Monetize
+  monetize :price_cents
+
   # == Associations
   belongs_to :season
   belongs_to :rental_category

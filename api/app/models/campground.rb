@@ -30,12 +30,13 @@ class Campground < ApplicationRecord
   validates :currency, presence: {message: 'Currency can not be empty'}
 
   # == Associations
-  has_many :users, through: :rights
   has_many :rights
   has_many :api_keys
   has_many :seasons
   has_many :bookings
   has_many :rental_categories
+
+  has_many :users, through: :rights
 
   # == Geocode
   # TODO ENABLE IN PRODUCTION

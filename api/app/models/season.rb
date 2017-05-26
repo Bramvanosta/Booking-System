@@ -21,6 +21,9 @@ class Season < ApplicationRecord
 
   # == Associations
   belongs_to :campground
+
+  has_many :prices
+
   has_many :rental_categories, through: :prices
 
   # == Functions
