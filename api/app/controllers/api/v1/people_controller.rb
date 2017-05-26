@@ -47,7 +47,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def person_params
-      params.require(:person).permit(:buyer_id, :birth_time)
+      params.require(:person).permit(:client_id, :birth_time)
     end
   end
 end

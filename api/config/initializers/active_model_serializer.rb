@@ -1,1 +1,1 @@
-ActiveModel::Serializer.config.adapter = ActiveModelSerializers::Adapter::JsonApi.new
+ActiveModel::Serializer.config.adapter = ActiveModel::Serializer::Adapter::JsonApi
