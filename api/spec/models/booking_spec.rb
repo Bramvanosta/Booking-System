@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  campground_id  :integer
-#  buyer_id       :integer
+#  client_id      :integer
 #  status         :string           default("created")
 #  arrival_date   :date             not null
 #  departure_date :date             not null

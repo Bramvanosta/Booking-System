@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  campground_id  :integer
-#  buyer_id       :integer
+#  client_id      :integer
 #  status         :string           default("created")
 #  arrival_date   :date             not null
 #  departure_date :date             not null
@@ -23,7 +23,7 @@ class Booking < ApplicationRecord
 
   # == Associations
   belongs_to :campground
-  belongs_to :buyer
+  belongs_to :client
   has_many :rentals, through: :booking_has_rentals
   has_many :persons, through: :booking_has_persons
   has_many :payments

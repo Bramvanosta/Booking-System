@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe BuyersController, type: :controller do
+RSpec.describe ClientsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Buyer. As you add validations to Buyer, be sure to
+  # Client. As you add validations to Client, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe BuyersController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # BuyersController. Be sure to keep this updated too.
+  # ClientsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      buyer = Buyer.create! valid_attributes
+      client = Client.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -51,33 +51,33 @@ RSpec.describe BuyersController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      buyer = Buyer.create! valid_attributes
-      get :show, params: {id: buyer.to_param}, session: valid_session
+      client = Client.create! valid_attributes
+      get :show, params: {id: client.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Buyer" do
+      it "creates a new Client" do
         expect {
-          post :create, params: {buyer: valid_attributes}, session: valid_session
-        }.to change(Buyer, :count).by(1)
+          post :create, params: {client: valid_attributes}, session: valid_session
+        }.to change(Client, :count).by(1)
       end
 
-      it "renders a JSON response with the new buyer" do
+      it "renders a JSON response with the new client" do
 
-        post :create, params: {buyer: valid_attributes}, session: valid_session
+        post :create, params: {client: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(buyer_url(Buyer.last))
+        expect(response.location).to eq(client_url(Client.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new buyer" do
+      it "renders a JSON response with errors for the new client" do
 
-        post :create, params: {buyer: invalid_attributes}, session: valid_session
+        post :create, params: {client: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,27 +90,27 @@ RSpec.describe BuyersController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested buyer" do
-        buyer = Buyer.create! valid_attributes
-        put :update, params: {id: buyer.to_param, buyer: new_attributes}, session: valid_session
-        buyer.reload
+      it "updates the requested client" do
+        client = Client.create! valid_attributes
+        put :update, params: {id: client.to_param, client: new_attributes}, session: valid_session
+        client.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the buyer" do
-        buyer = Buyer.create! valid_attributes
+      it "renders a JSON response with the client" do
+        client = Client.create! valid_attributes
 
-        put :update, params: {id: buyer.to_param, buyer: valid_attributes}, session: valid_session
+        put :update, params: {id: client.to_param, client: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the buyer" do
-        buyer = Buyer.create! valid_attributes
+      it "renders a JSON response with errors for the client" do
+        client = Client.create! valid_attributes
 
-        put :update, params: {id: buyer.to_param, buyer: invalid_attributes}, session: valid_session
+        put :update, params: {id: client.to_param, client: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -118,11 +118,11 @@ RSpec.describe BuyersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested buyer" do
-      buyer = Buyer.create! valid_attributes
+    it "destroys the requested client" do
+      client = Client.create! valid_attributes
       expect {
-        delete :destroy, params: {id: buyer.to_param}, session: valid_session
-      }.to change(Buyer, :count).by(-1)
+        delete :destroy, params: {id: client.to_param}, session: valid_session
+      }.to change(Client, :count).by(-1)
     end
   end
 

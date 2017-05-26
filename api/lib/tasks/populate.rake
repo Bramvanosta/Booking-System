@@ -102,11 +102,11 @@ namespace :db do
 
     # Create prices for each rental category for each season
     Price.create!(
-       season_id: low_season.id,
-       rental_category_id: pitch.id,
-       name: 'Pitch',
-       price_cents: 675,
-       price_currency: campground.currency
+        season_id: low_season.id,
+        rental_category_id: pitch.id,
+        name: 'Pitch',
+        price_cents: 675,
+        price_currency: campground.currency
     )
 
     Price.create!(
@@ -202,8 +202,8 @@ namespace :db do
     # Create 100 Pitches
     100.times do |n|
       Rental.create!(
-        rental_category_id: pitch.id,
-        name: "Pitch-#{n}"
+          rental_category_id: pitch.id,
+          name: "Pitch-#{n}"
       )
     end
 
@@ -225,57 +225,9 @@ namespace :db do
 
     puts 'Rentals created'
 
-    # Create 25 Buyers with one pitch booking each in low season
+    # Create 25 Clients with one pitch booking each in low season
     25.times do |n|
-      buyer = Buyer.create!(
-         title: Faker::Name.prefix,
-         first_name: Faker::Name.first_name,
-         last_name: Faker::Name.last_name,
-         email: Faker::Internet.safe_email,
-         address: Faker::Address.street_address,
-         zip_code: Faker::Address.zip_code,
-         city: Faker::Address.city,
-         country: Faker::Address.country,
-         phone_number: Faker::PhoneNumber.phone_number
-      )
-
-      booking = Booking.create!(
-        campground_id: campground.id,
-        buyer_id: buyer.id,
-        arrival_date: Faker::Date.between(Date.new(2018, 4, 1), Date.new(2018, 6, 1)),
-        departure_date: Faker::Date.between(Date.new(2018, 6, 2), Date.new(2018, 7, 1))
-      )
-
-      rand(2...4).times do
-        person = Person.create!(
-          buyer_id: buyer.id,
-          birth_date: Faker::Date.between(40.years.ago, 2.years.ago)
-        )
-
-        BookingHasPerson.create!(
-            booking_id: booking.id,
-            person_id: person.id
-        )
-      end
-
-      BookingHasRental.create!(
-         booking_id: booking.id,
-         rental_id: Rental.where(rental_category_id: pitch.id).order('RANDOM()').first.id
-      )
-
-      if n % 3 === 0
-        BookingHasRental.create!(
-            booking_id: booking.id,
-            rental_id: Rental.where(rental_category_id: refrigerator.id).order('RANDOM()').first.id
-        )
-      end
-
-      puts 'Buyer with Booking created'
-    end
-
-    # Create 10 Buyers with one mobilehome booking each in low season
-    10.times do
-      buyer = Buyer.create!(
+      client = Client.create!(
           title: Faker::Name.prefix,
           first_name: Faker::Name.first_name,
           last_name: Faker::Name.last_name,
@@ -289,55 +241,14 @@ namespace :db do
 
       booking = Booking.create!(
           campground_id: campground.id,
-          buyer_id: buyer.id,
+          client_id: client.id,
           arrival_date: Faker::Date.between(Date.new(2018, 4, 1), Date.new(2018, 6, 1)),
           departure_date: Faker::Date.between(Date.new(2018, 6, 2), Date.new(2018, 7, 1))
       )
 
       rand(2...4).times do
         person = Person.create!(
-            buyer_id: buyer.id,
-            birth_date: Faker::Date.between(40.years.ago, 2.years.ago)
-        )
-
-        BookingHasPerson.create!(
-            booking_id: booking.id,
-            person_id: person.id
-        )
-      end
-
-      BookingHasRental.create!(
-          booking_id: booking.id,
-          rental_id: Rental.where(rental_category_id: mobilhome.id).order('RANDOM()').first.id
-      )
-
-      puts 'Buyer with Booking created'
-    end
-
-    # Create 25 Buyers with one pitch booking each in high season
-    25.times do |n|
-      buyer = Buyer.create!(
-          title: Faker::Name.prefix,
-          first_name: Faker::Name.first_name,
-          last_name: Faker::Name.last_name,
-          email: Faker::Internet.safe_email,
-          address: Faker::Address.street_address,
-          zip_code: Faker::Address.zip_code,
-          city: Faker::Address.city,
-          country: Faker::Address.country,
-          phone_number: Faker::PhoneNumber.phone_number
-      )
-
-      booking = Booking.create!(
-          campground_id: campground.id,
-          buyer_id: buyer.id,
-          arrival_date: Faker::Date.between(Date.new(2018, 7, 2), Date.new(2018, 8, 1)),
-          departure_date: Faker::Date.between(Date.new(2018, 8, 2), Date.new(2018, 9, 1))
-      )
-
-      rand(2...6).times do
-        person = Person.create!(
-            buyer_id: buyer.id,
+            client_id: client.id,
             birth_date: Faker::Date.between(40.years.ago, 2.years.ago)
         )
 
@@ -359,12 +270,12 @@ namespace :db do
         )
       end
 
-      puts 'Buyer with Booking created'
+      puts 'Client with Booking created'
     end
 
-    # Create 10 Buyers with one mobilehome booking each in high season
+    # Create 10 Clients with one mobilehome booking each in low season
     10.times do
-      buyer = Buyer.create!(
+      client = Client.create!(
           title: Faker::Name.prefix,
           first_name: Faker::Name.first_name,
           last_name: Faker::Name.last_name,
@@ -378,14 +289,14 @@ namespace :db do
 
       booking = Booking.create!(
           campground_id: campground.id,
-          buyer_id: buyer.id,
-          arrival_date: Faker::Date.between(Date.new(2018, 7, 2), Date.new(2018, 8, 1)),
-          departure_date: Faker::Date.between(Date.new(2018, 8, 2), Date.new(2018, 9, 1))
+          client_id: client.id,
+          arrival_date: Faker::Date.between(Date.new(2018, 4, 1), Date.new(2018, 6, 1)),
+          departure_date: Faker::Date.between(Date.new(2018, 6, 2), Date.new(2018, 7, 1))
       )
 
-      rand(2...6).times do
+      rand(2...4).times do
         person = Person.create!(
-            buyer_id: buyer.id,
+            client_id: client.id,
             birth_date: Faker::Date.between(40.years.ago, 2.years.ago)
         )
 
@@ -400,7 +311,96 @@ namespace :db do
           rental_id: Rental.where(rental_category_id: mobilhome.id).order('RANDOM()').first.id
       )
 
-      puts 'Buyer with Booking created'
+      puts 'Client with Booking created'
+    end
+
+    # Create 25 Clients with one pitch booking each in high season
+    25.times do |n|
+      client = Client.create!(
+          title: Faker::Name.prefix,
+          first_name: Faker::Name.first_name,
+          last_name: Faker::Name.last_name,
+          email: Faker::Internet.safe_email,
+          address: Faker::Address.street_address,
+          zip_code: Faker::Address.zip_code,
+          city: Faker::Address.city,
+          country: Faker::Address.country,
+          phone_number: Faker::PhoneNumber.phone_number
+      )
+
+      booking = Booking.create!(
+          campground_id: campground.id,
+          client_id: client.id,
+          arrival_date: Faker::Date.between(Date.new(2018, 7, 2), Date.new(2018, 8, 1)),
+          departure_date: Faker::Date.between(Date.new(2018, 8, 2), Date.new(2018, 9, 1))
+      )
+
+      rand(2...6).times do
+        person = Person.create!(
+            client_id: client.id,
+            birth_date: Faker::Date.between(40.years.ago, 2.years.ago)
+        )
+
+        BookingHasPerson.create!(
+            booking_id: booking.id,
+            person_id: person.id
+        )
+      end
+
+      BookingHasRental.create!(
+          booking_id: booking.id,
+          rental_id: Rental.where(rental_category_id: pitch.id).order('RANDOM()').first.id
+      )
+
+      if n % 3 === 0
+        BookingHasRental.create!(
+            booking_id: booking.id,
+            rental_id: Rental.where(rental_category_id: refrigerator.id).order('RANDOM()').first.id
+        )
+      end
+
+      puts 'Client with Booking created'
+    end
+
+    # Create 10 Clients with one mobilehome booking each in high season
+    10.times do
+      client = Client.create!(
+          title: Faker::Name.prefix,
+          first_name: Faker::Name.first_name,
+          last_name: Faker::Name.last_name,
+          email: Faker::Internet.safe_email,
+          address: Faker::Address.street_address,
+          zip_code: Faker::Address.zip_code,
+          city: Faker::Address.city,
+          country: Faker::Address.country,
+          phone_number: Faker::PhoneNumber.phone_number
+      )
+
+      booking = Booking.create!(
+          campground_id: campground.id,
+          client_id: client.id,
+          arrival_date: Faker::Date.between(Date.new(2018, 7, 2), Date.new(2018, 8, 1)),
+          departure_date: Faker::Date.between(Date.new(2018, 8, 2), Date.new(2018, 9, 1))
+      )
+
+      rand(2...6).times do
+        person = Person.create!(
+            client_id: client.id,
+            birth_date: Faker::Date.between(40.years.ago, 2.years.ago)
+        )
+
+        BookingHasPerson.create!(
+            booking_id: booking.id,
+            person_id: person.id
+        )
+      end
+
+      BookingHasRental.create!(
+          booking_id: booking.id,
+          rental_id: Rental.where(rental_category_id: mobilhome.id).order('RANDOM()').first.id
+      )
+
+      puts 'Client with Booking created'
     end
   end
 end

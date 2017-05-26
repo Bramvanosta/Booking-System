@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: buyers
+# Table name: clients
 #
 #  id            :integer          not null, primary key
 #  title         :string           not null
@@ -17,7 +17,7 @@
 #  updated_at    :datetime         not null
 #
 
-class Buyer < ApplicationRecord
+class Client < ApplicationRecord
 
   # == Validations
   validates :title, presence: {message: 'Title can not be empty'}

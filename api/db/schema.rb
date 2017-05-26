@@ -49,29 +49,14 @@ ActiveRecord::Schema.define(version: 20170516230529) do
 
   create_table "bookings", force: :cascade do |t|
     t.bigint "campground_id"
-    t.bigint "buyer_id"
+    t.bigint "client_id"
     t.string "status", default: "created"
     t.date "arrival_date", null: false
     t.date "departure_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["buyer_id"], name: "index_bookings_on_buyer_id"
     t.index ["campground_id"], name: "index_bookings_on_campground_id"
-  end
-
-  create_table "buyers", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "email", null: false
-    t.string "address", null: false
-    t.string "zip_code", null: false
-    t.string "city", null: false
-    t.string "country", null: false
-    t.string "phone_number", null: false
-    t.string "mobile_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_bookings_on_client_id"
   end
 
   create_table "campgrounds", force: :cascade do |t|
@@ -91,6 +76,21 @@ ActiveRecord::Schema.define(version: 20170516230529) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "clients", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "address", null: false
+    t.string "zip_code", null: false
+    t.string "city", null: false
+    t.string "country", null: false
+    t.string "phone_number", null: false
+    t.string "mobile_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payments", force: :cascade do |t|
     t.bigint "booking_id"
     t.integer "price_cents", default: 0, null: false
@@ -102,11 +102,11 @@ ActiveRecord::Schema.define(version: 20170516230529) do
   end
 
   create_table "people", force: :cascade do |t|
-    t.bigint "buyer_id"
+    t.bigint "client_id"
     t.date "birth_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["buyer_id"], name: "index_people_on_buyer_id"
+    t.index ["client_id"], name: "index_people_on_client_id"
   end
 
   create_table "prices", force: :cascade do |t|
@@ -192,10 +192,10 @@ ActiveRecord::Schema.define(version: 20170516230529) do
   add_foreign_key "booking_has_people", "people"
   add_foreign_key "booking_has_rentals", "bookings"
   add_foreign_key "booking_has_rentals", "rentals"
-  add_foreign_key "bookings", "buyers"
   add_foreign_key "bookings", "campgrounds"
+  add_foreign_key "bookings", "clients"
   add_foreign_key "payments", "bookings"
-  add_foreign_key "people", "buyers"
+  add_foreign_key "people", "clients"
   add_foreign_key "prices", "rental_categories"
   add_foreign_key "prices", "seasons"
   add_foreign_key "rental_categories", "campgrounds"
