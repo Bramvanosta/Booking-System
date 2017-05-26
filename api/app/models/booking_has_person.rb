@@ -10,6 +10,9 @@
 #
 
 class BookingHasPerson < ApplicationRecord
+
+  # == Associations
   belongs_to :booking
   belongs_to :person
+
 end

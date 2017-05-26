@@ -1,5 +1,5 @@
 module Api::V1
   class ApiController < ApplicationController
-    # Generic API stuff here
+    include DeviseTokenAuth::Concerns::SetUserByToken
   end
 end

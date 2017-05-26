@@ -37,4 +37,15 @@ class Campground < ApplicationRecord
   has_many :bookings
   has_many :rental_categories
 
+  # == Geocode
+  # TODO ENABLE IN PRODUCTION
+  # geocoded_by :full_street_address
+  # after_validation :geocode
+
+  # == Functions
+  def full_street_address
+    [address, zip_code, city].compact.join(', ')
+  end
+
+
 end
