@@ -7,8 +7,8 @@ class CreateApiKeys < ActiveRecord::Migration[5.1]
       t.string :name, null: false
 
       # Here go the different access rights
-      t.string :can_view_bookings, default: true
-      t.string :can_edit_bookings, default: false
+      t.boolean :can_view_bookings, null: false, default: true
+      t.boolean :can_edit_bookings, null: false, default: false
 
       t.timestamps
     end

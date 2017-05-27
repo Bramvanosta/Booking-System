@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: buyers
+# Table name: clients
 #
 #  id            :integer          not null, primary key
 #  title         :string           not null
