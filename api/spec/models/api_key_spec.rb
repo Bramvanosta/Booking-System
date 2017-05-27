@@ -7,8 +7,8 @@
 #  campground_id     :integer
 #  token             :string           not null
 #  name              :string           not null
-#  can_view_bookings :string           default("t")
-#  can_edit_bookings :string           default("f")
+#  can_view_bookings :boolean          default("true"), not null
+#  can_edit_bookings :boolean          default("false"), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #

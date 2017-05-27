@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516230529) do
+ActiveRecord::Schema.define(version: 20170527000831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20170516230529) do
     t.bigint "campground_id"
     t.string "token", null: false
     t.string "name", null: false
-    t.string "can_view_bookings", default: "t"
-    t.string "can_edit_bookings", default: "f"
+    t.boolean "can_view_bookings", default: true, null: false
+    t.boolean "can_edit_bookings", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["campground_id"], name: "index_api_keys_on_campground_id"
@@ -140,10 +140,27 @@ ActiveRecord::Schema.define(version: 20170516230529) do
   create_table "rights", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "campground_id"
-    t.string "can_view_bookings", default: "t"
-    t.string "can_edit_bookings", default: "f"
+    t.boolean "can_view_bookings", default: true, null: false
+    t.boolean "can_edit_bookings", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "can_view_rights", default: true, null: false
+    t.boolean "can_edit_rights", default: false, null: false
+    t.boolean "can_view_campground", default: true, null: false
+    t.boolean "can_edit_campground", default: false, null: false
+    t.boolean "can_create_bookings", default: false, null: false
+    t.boolean "can_delete_bookings", default: false, null: false
+    t.boolean "can_view_clients", default: true, null: false
+    t.boolean "can_edit_clients", default: false, null: false
+    t.boolean "can_delete_clients", default: false, null: false
+    t.boolean "can_view_api_keys", default: false, null: false
+    t.boolean "can_create_api_keys", default: false, null: false
+    t.boolean "can_edit_api_keys", default: false, null: false
+    t.boolean "can_delete_api_keys", default: false, null: false
+    t.boolean "can_view_users", default: false, null: false
+    t.boolean "can_create_users", default: false, null: false
+    t.boolean "can_edit_users", default: false, null: false
+    t.boolean "can_delete_users", default: false, null: false
     t.index ["campground_id"], name: "index_rights_on_campground_id"
     t.index ["user_id"], name: "index_rights_on_user_id"
   end

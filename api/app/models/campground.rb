@@ -48,5 +48,4 @@ class Campground < ApplicationRecord
     [address, zip_code, city].compact.join(', ')
   end
 
-
 end
