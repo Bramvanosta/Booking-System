@@ -1,48 +1,52 @@
 module Api::V1
   class CampgroundsController < ApiController
-    before_action :set_campground, only: [:show, :update, :destroy]
+    before_action :set_campgrounds, only: [:index]
+    before_action :set_campground, only: [:show, :update]
+    before_action :set_rights, only: [:show, :update]
 
     # GET /campgrounds
     def index
-      @campgrounds = Campground.all
-
       render json: @campgrounds
     end
 
     # GET /campgrounds/1
     def show
-      render json: @campground
-    end
-
-    # POST /campgrounds
-    def create
-      @campground = Campground.new(campground_params)
-
-      if @campground.save
-        render json: @campground, status: :created, location: @campground
+      if @rights.can_view_campground?
+        render json: @campground
       else
-        render json: @campground.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
     end
 
     # PATCH/PUT /campgrounds/1
     def update
-      if @campground.update(campground_params)
-        render json: @campground
+      if @rights.can_edit_campground?
+        if @campground.update(campground_params)
+          render json: @campground
+        else
+          render json: @campground.errors, status: :unprocessable_entity
+        end
       else
-        render json: @campground.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
-    end
-
-    # DELETE /campgrounds/1
-    def destroy
-      @campground.destroy
     end
 
     private
     # Use callbacks to share common setup or constraints between actions.
+    def set_campgrounds
+      # @campgrounds = current_v1_user.campgrounds
+      @campgrounds = User.find(3).campgrounds
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
     def set_campground
       @campground = Campground.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_rights
+      # @rights = current_v1_user.rights.where(campground_id: params[:id])
+      @rights = User.find(1).rights.find_by(campground_id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
