@@ -9,7 +9,8 @@ module Api::V1
       if @access_rights.can_view_users?
         render json: @users
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.users.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -18,7 +19,8 @@ module Api::V1
       if @access_rights.can_view_users?
         render json: @user
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.users.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -33,7 +35,8 @@ module Api::V1
           render json: @user.errors, status: :unprocessable_entity
         end
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.users.create'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -46,7 +49,8 @@ module Api::V1
           render json: @user.errors, status: :unprocessable_entity
         end
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.users.edit'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -55,7 +59,8 @@ module Api::V1
       if @access_rights.can_delete_users?
         @user.destroy
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.users.delete'
+        render json: {error: error_message}, status: 401
       end
     end
 
