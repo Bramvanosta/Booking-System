@@ -9,7 +9,8 @@ module Api::V1
       if @access_rights.can_view_bookings?
         render json: @bookings
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.bookings.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -18,7 +19,8 @@ module Api::V1
       if @access_rights.can_view_bookings?
         render json: @booking
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.bookings.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -33,7 +35,8 @@ module Api::V1
           render json: @booking.errors, status: :unprocessable_entity
         end
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.bookings.create'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -46,7 +49,8 @@ module Api::V1
           render json: @booking.errors, status: :unprocessable_entity
         end
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.bookings.edit'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -55,7 +59,8 @@ module Api::V1
       if @access_rights.can_delete_bookings?
         @booking.destroy
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.bookings.delete'
+        render json: {error: error_message}, status: 401
       end
     end
 

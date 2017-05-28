@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: userstrue
 #
 #  id                     :integer          not null, primary key
 #  provider               :string           default("email"), not null
@@ -35,18 +35,15 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   # == Validations
-  validates :first_name, presence: {message: 'First name can not be empty'}
-  validates :last_name, presence: {message: 'Last name can not be empty'}
-  validates :email, presence: {message: 'Email can not be empty'},
-            uniqueness: {message: ->(object, data) do
-              "The email address #{data[:value]} has already been taken, please login or use another email address"
-            end}
-  validates :password, presence: {message: 'Password can not be empty'}
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true,
+            uniqueness: true
 
   # == Associations
   has_many :rights
   has_many :api_keys
-  
+
   has_many :campgrounds, through: :rights
 
 end

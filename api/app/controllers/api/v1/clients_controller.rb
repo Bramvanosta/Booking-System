@@ -9,7 +9,8 @@ module Api::V1
       if @access_rights.can_view_clients?
         render json: @clients
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.clients.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -18,7 +19,8 @@ module Api::V1
       if @access_rights.can_view_clients?
         render json: @client
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.clients.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -31,7 +33,8 @@ module Api::V1
           render json: @client.errors, status: :unprocessable_entity
         end
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.clients.edit'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -40,7 +43,8 @@ module Api::V1
       if @access_rights.can_delete_clients?
         @client.destroy
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.clients.delete'
+        render json: {error: error_message}, status: 401
       end
     end
 

@@ -14,7 +14,8 @@ module Api::V1
       if @access_rights.can_view_campground?
         render json: @campground
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.campgrounds.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -27,7 +28,8 @@ module Api::V1
           render json: @campground.errors, status: :unprocessable_entity
         end
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.campgrounds.edit'
+        render json: {error: error_message}, status: 401
       end
     end
 
