@@ -26,9 +26,10 @@ services:
   bs_client:
     container_name: bs_client
     build:
-          context: ./client
+      context: ./client
+    working_dir: /var/www/html/client
+    command: npm run start
     volumes:
       - ./client:/var/www/html/client
-      - /var/www/html/client/node_modules
     ports:
       - 4200:4200
