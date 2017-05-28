@@ -1,48 +1,79 @@
 module Api::V1
   class UsersController < ApplicationController
+    before_action :set_users, only: [:index]
     before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_access_rights, only: [:index, :show, :create, :update, :destroy]
 
     # GET /users
     def index
-      @users = User.all
-
-      render json: @users
+      if @access_rights.can_view_users?
+        render json: @users
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     # GET /users/1
     def show
-      render json: @user
+      if @access_rights.can_view_users?
+        render json: @user
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     # POST /users
     def create
-      @user = User.new(user_params)
+      if @access_rights.can_create_users?
+        @user = User.new(user_params)
 
-      if @user.save
-        render json: @user, status: :created, location: @user
+        if @user.save
+          render json: @user, status: :created, location: @user
+        else
+          render json: @user.errors, status: :unprocessable_entity
+        end
       else
-        render json: @user.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
     end
 
     # PATCH/PUT /users/1
     def update
-      if @user.update(user_params)
-        render json: @user
+      if @access_rights.can_edit_users?
+        if @user.update(user_params)
+          render json: @user
+        else
+          render json: @user.errors, status: :unprocessable_entity
+        end
       else
-        render json: @user.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
     end
 
     # DELETE /users/1
     def destroy
-      @user.destroy
+      if @access_rights.can_delete_users?
+        @user.destroy
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     private
     # Use callbacks to share common setup or constraints between actions.
+    def set_users
+      @users = Campground.find(params[:campground_id]).users
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_access_rights
+      # @access_rights = current_v1_user.rights.where(campground_id: params[:campground_id])
+      @access_rights = User.find(1).rights.find_by(campground_id: params[:campground_id])
     end
 
     # Only allow a trusted parameter "white list" through.

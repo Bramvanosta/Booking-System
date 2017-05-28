@@ -1,48 +1,79 @@
 module Api::V1
   class RentalCategoriesController < ApiController
+    before_action :set_rental_categories, only: [:index]
     before_action :set_rental_category, only: [:show, :update, :destroy]
+    before_action :set_access_rights, only: [:index, :show, :create, :update, :destroy]
 
     # GET /rental_categories
     def index
-      @rental_categories = RentalCategory.all
-
-      render json: @rental_categories
+      if @access_rights.can_view_campground?
+        render json: @rental_categories
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     # GET /rental_categories/1
     def show
-      render json: @rental_category
+      if @access_rights.can_view_campground?
+        render json: @rental_category
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     # POST /rental_categories
     def create
-      @rental_category = RentalCategory.new(rental_category_params)
+      if @access_rights.can_edit_campground?
+        @rental_category = RentalCategory.new(rental_category_params)
 
-      if @rental_category.save
-        render json: @rental_category, status: :created, location: @rental_category
+        if @rental_category.save
+          render json: @rental_category, status: :created, location: @rental_category
+        else
+          render json: @rental_category.errors, status: :unprocessable_entity
+        end
       else
-        render json: @rental_category.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
     end
 
     # PATCH/PUT /rental_categories/1
     def update
-      if @rental_category.update(rental_category_params)
-        render json: @rental_category
+      if @access_rights.can_edit_campground?
+        if @rental_category.update(rental_category_params)
+          render json: @rental_category
+        else
+          render json: @rental_category.errors, status: :unprocessable_entity
+        end
       else
-        render json: @rental_category.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
     end
 
     # DELETE /rental_categories/1
     def destroy
-      @rental_category.destroy
+      if @access_rights.can_edit_campground?
+        @rental_category.destroy
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     private
     # Use callbacks to share common setup or constraints between actions.
+    def set_rental_categories
+      @rental_categories = Campground.find(params[:campground_id]).rental_categories
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
     def set_rental_category
       @rental_category = RentalCategory.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_access_rights
+      # @access_rights = current_v1_user.rights.where(campground_id: params[:campground_id])
+      @access_rights = User.find(1).rights.find_by(campground_id: params[:campground_id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -1,48 +1,64 @@
 module Api::V1
   class ClientsController < ApiController
+    before_action :set_clients, only: [:index]
     before_action :set_client, only: [:show, :update, :destroy]
+    before_action :set_access_rights, only: [:index, :show, :update, :destroy]
 
     # GET /clients
     def index
-      @clients = Client.all
-
-      render json: @clients
+      if @access_rights.can_view_clients?
+        render json: @clients
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     # GET /clients/1
     def show
-      render json: @client
-    end
-
-    # POST /clients
-    def create
-      @client = Client.new(client_params)
-
-      if @client.save
-        render json: @client, status: :created, location: @client
+      if @access_rights.can_view_clients?
+        render json: @client
       else
-        render json: @client.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
     end
 
     # PATCH/PUT /clients/1
     def update
-      if @client.update(client_params)
-        render json: @client
+      if @access_rights.can_edit_clients?
+        if @client.update(client_params)
+          render json: @client
+        else
+          render json: @client.errors, status: :unprocessable_entity
+        end
       else
-        render json: @client.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
     end
 
     # DELETE /clients/1
     def destroy
-      @client.destroy
+      if @access_rights.can_delete_clients?
+        @client.destroy
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     private
     # Use callbacks to share common setup or constraints between actions.
+    def set_clients
+      @clients = Campground.find(params[:campground_id]).clients
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
     def set_client
       @client = Client.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_access_rights
+      # @access_rights = current_v1_user.rights.where(campground_id: params[:campground_id])
+      @access_rights = User.find(1).rights.find_by(campground_id: params[:campground_id])
     end
 
     # Only allow a trusted parameter "white list" through.
