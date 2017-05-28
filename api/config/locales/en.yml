@@ -30,4 +30,135 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    rights:
+      api_keys:
+        view: "You don't have the correct rights to view API Keys"
+        create: "You don't have the correct rights to create API Keys"
+        edit: "You don't have the correct rights to edit this API Key"
+        delete: "You don't have the correct rights to delete this API Key"
+      bookings:
+        view: "You don't have the correct rights to view Bookings"
+        create: "You don't have the correct rights to create Bookings"
+        edit: "You don't have the correct rights to edit this Booking"
+        delete: "You don't have the correct rights to delete this Booking"
+      campgrounds:
+        view: "You don't have the correct rights to view this Campground"
+        edit: "You don't have the correct rights to edit this Campground"
+      clients:
+        view: "You don't have the correct rights to view Clients"
+        edit: "You don't have the correct rights to edit this Client"
+        delete: "You don't have the correct rights to delete this Client"
+      payments:
+        view: "You don't have the correct rights to view Payments"
+        create: "You don't have the correct rights to create Payments"
+        edit: "You don't have the correct rights to edit this Payment"
+        delete: "You don't have the correct rights to delete this Payment"
+      prices:
+        view: "You don't have the correct rights to view Prices"
+        create: "You don't have the correct rights to create Prices"
+        edit: "You don't have the correct rights to edit this Price"
+        delete: "You don't have the correct rights to delete this Price"
+      rental_categories:
+        view: "You don't have the correct rights to view Rental Categories"
+        create: "You don't have the correct rights to create Rental Categories"
+        edit: "You don't have the correct rights to edit this Rental Category"
+        delete: "You don't have the correct rights to delete this Rental Category"
+      rentals:
+        view: "You don't have the correct rights to view Rentals"
+        create: "You don't have the correct rights to create Rentals"
+        edit: "You don't have the correct rights to edit this Rental"
+        delete: "You don't have the correct rights to delete this Rental"
+      rights:
+        view: "You don't have the correct rights to view Rights"
+        edit: "You don't have the correct rights to edit these Rights"
+      seasons:
+        view: "You don't have the correct rights to view Seasons"
+        create: "You don't have the correct rights to create Seasons"
+        edit: "You don't have the correct rights to edit this Season"
+        delete: "You don't have the correct rights to delete this Season"
+      users:
+        view: "You don't have the correct rights to view Users"
+        create: "You don't have the correct rights to create Users"
+        edit: "You don't have the correct rights to edit this User"
+        delete: "You don't have the correct rights to delete this User"
+        
+  activerecord:
+      errors:
+        models:
+          model_name:
+            attributes:
+              api_key:
+                name:
+                  blank: "Name can not be empty"
+              booking:
+                arrival_date:
+                  blank: "Arrival Date can not be empty"
+                  future: "Arrival Date can not be in the past"
+                departure_date:
+                  blank: "Departure Date can not be empty"
+                  future: "Departure Date can not be in the past"
+                  before_arrival: "Departure Date can not be before Arrival Date"
+              campground:
+                name:
+                  blank: "Name can not be empty"
+                address:
+                  blank: "Address can not be empty"
+                zip_code:
+                  blank: "Zip Code can not be empty"
+                city:
+                  blank: "City can not be empty"
+                country:
+                  blank: "Country can not be empty"
+                currency:
+                  blank: "Currency can not be empty"
+              client:
+                title:
+                  blank: "Title can not be empty"
+                first_name:
+                  blank: "First Name can not be empty"
+                last_name:
+                  blank: "Last Name can not be empty"
+                email:
+                  blank: "Email can not be empty"
+                address:
+                  blank: "Address can not be empty"
+                zip_code:
+                  blank: "Zip Code can not be empty"
+                city:
+                  blank: "City can not be empty"
+                country:
+                  blank: "Country can not be empty"
+                phone_number:
+                  blank: "Phone Number can not be empty"
+              person:
+                birth_date:
+                  blank: "Birth Date can not be empty"
+              price:
+                name:
+                  blank: "Name can not be empty"
+                price_cents:
+                  blank: "Price can not be empty"
+              rental:
+                name:
+                  blank: "Name can not be empty"
+              rental_category:
+                name:
+                  blank: "Name can not be empty"
+              season:
+                name:
+                  blank: "Name can not be empty"
+                start_date:
+                  blank: "Start Date can not be empty"
+                end_date:
+                  blank: "End Date can not be empty"
+                  before_start: "End Date can not be before Start Date"
+              user:
+                first_name:
+                  blank: "First Name can not be empty"
+                last_name:
+                  blank: "Last Name can not be empty"
+                email:
+                  blank: "Email can not be empty"
+                  taken: "This Email address has already been taken, please login or use another Email address"
+

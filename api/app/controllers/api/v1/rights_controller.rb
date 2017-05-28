@@ -9,7 +9,8 @@ module Api::V1
       if @access_rights.can_view_rights?
         render json: @rights
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.rights.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -18,7 +19,8 @@ module Api::V1
       if @access_rights.can_view_rights?
         render json: @right
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.rights.view'
+        render json: {error: error_message}, status: 401
       end
     end
 
@@ -31,7 +33,8 @@ module Api::V1
           render json: @right.errors, status: :unprocessable_entity
         end
       else
-        render json: {error: "You don't have access to this page"}, status: 401
+        error_message = I18n.t 'errors.rights.rights.edit'
+        render json: {error: error_message}, status: 401
       end
     end
 

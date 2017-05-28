@@ -15,10 +15,10 @@
 class Booking < ApplicationRecord
 
   # == Validations
-  validates :arrival_date, presence: {message: 'Arrival date can not be empty'},
-            in_future: {message: 'Arrival date can not be in the past'}
-  validates :departure_date, presence: {message: 'Departure date can not be empty'},
-            in_future: {message: 'Departure date can not be in the past'}
+  validates :arrival_date, presence: true,
+            in_future: {message: :future}
+  validates :departure_date, presence: true,
+            in_future: {message: :future}
   validate :departure_after_arrival
 
   # == Associations
@@ -35,7 +35,7 @@ class Booking < ApplicationRecord
   # == Functions
   def departure_after_arrival
     if departure_date < arrival_date
-      errors.add(:date_departure, 'Departure date can not be before Arrival date')
+      errors.add(:date_departure, :before_arrival)
     end
   end
 

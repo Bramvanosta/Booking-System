@@ -20,15 +20,15 @@
 class Client < ApplicationRecord
 
   # == Validations
-  validates :title, presence: {message: 'Title can not be empty'}
-  validates :first_name, presence: {message: 'First Name can not be empty'}
-  validates :last_name, presence: {message: 'Last Name can not be empty'}
-  validates :email, presence: {message: 'Email can not be empty'}
-  validates :address, presence: {message: 'Address can not be empty'}
-  validates :zip_code, presence: {message: 'Zip code can not be empty'}
-  validates :city, presence: {message: 'City can not be empty'}
-  validates :country, presence: {message: 'Country can not be empty'}
-  validates :phone_number, presence: {message: 'Phone number can not be empty'}
+  validates :title, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true
+  validates :address, presence: true
+  validates :zip_code, presence: true
+  validates :city, presence: true
+  validates :country, presence: true
+  validates :phone_number, presence: true
 
   # == Associations
   has_many :bookings
