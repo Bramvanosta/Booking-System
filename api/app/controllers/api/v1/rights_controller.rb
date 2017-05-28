@@ -1,48 +1,54 @@
 module Api::V1
   class RightsController < ApiController
-    before_action :set_right, only: [:show, :update, :destroy]
+    before_action :set_rights, only: [:index]
+    before_action :set_right, only: [:show, :update]
+    before_action :set_access_rights, only: [:index, :show, :update]
 
     # GET /rights
     def index
-      @rights = Right.all
-
-      render json: @rights
+      if @access_rights.can_view_rights?
+        render json: @rights
+      else
+        render json: {error: "You don't have access to this page"}, status: 401
+      end
     end
 
     # GET /rights/1
     def show
-      render json: @right
-    end
-
-    # POST /rights
-    def create
-      @right = Right.new(right_params)
-
-      if @right.save
-        render json: @right, status: :created, location: @right
+      if @access_rights.can_view_rights?
+        render json: @right
       else
-        render json: @right.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
     end
 
     # PATCH/PUT /rights/1
     def update
-      if @right.update(right_params)
-        render json: @right
+      if @access_rights.can_edit_rights?
+        if @right.update(right_params)
+          render json: @right
+        else
+          render json: @right.errors, status: :unprocessable_entity
+        end
       else
-        render json: @right.errors, status: :unprocessable_entity
+        render json: {error: "You don't have access to this page"}, status: 401
       end
-    end
-
-    # DELETE /rights/1
-    def destroy
-      @right.destroy
     end
 
     private
     # Use callbacks to share common setup or constraints between actions.
+    def set_rights
+      @rights = Campground.find(params[:campground_id]).rights
+    end
+
     def set_right
       @right = Right.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_access_rights
+      # @access_rights = current_v1_user.rights.where(campground_id: params[:campground_id])
+      @access_rights = User.find(1).rights.find_by(campground_id: params[:campground_id])
     end
 
     # Only allow a trusted parameter "white list" through.
