@@ -2,7 +2,7 @@ module Api::V1
   class CampgroundsController < ApiController
     before_action :set_campgrounds, only: [:index]
     before_action :set_campground, only: [:show, :update]
-    before_action :set_rights, only: [:show, :update]
+    before_action :set_access_rights, only: [:show, :update]
 
     # GET /campgrounds
     def index
@@ -11,7 +11,7 @@ module Api::V1
 
     # GET /campgrounds/1
     def show
-      if @rights.can_view_campground?
+      if @access_rights.can_view_campground?
         render json: @campground
       else
         render json: {error: "You don't have access to this page"}, status: 401
@@ -20,7 +20,7 @@ module Api::V1
 
     # PATCH/PUT /campgrounds/1
     def update
-      if @rights.can_edit_campground?
+      if @access_rights.can_edit_campground?
         if @campground.update(campground_params)
           render json: @campground
         else
@@ -35,7 +35,7 @@ module Api::V1
     # Use callbacks to share common setup or constraints between actions.
     def set_campgrounds
       # @campgrounds = current_v1_user.campgrounds
-      @campgrounds = User.find(3).campgrounds
+      @campgrounds = User.find(1).campgrounds
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -44,9 +44,9 @@ module Api::V1
     end
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_rights
-      # @rights = current_v1_user.rights.where(campground_id: params[:id])
-      @rights = User.find(1).rights.find_by(campground_id: params[:id])
+    def set_access_rights
+      # @access_rights = current_v1_user.rights.where(campground_id: params[:id])
+      @access_rights = User.find(1).rights.find_by(campground_id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
