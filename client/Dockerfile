@@ -1,7 +1,5 @@
-FROM node:latest
+FROM node:alpine
 
 MAINTAINER Bram van Osta <bramvanosta@gmail.com>
 
-RUN apt-get update && apt-get install -y bzip2 libfontconfig
-
-RUN yarn global add angular-cli node-sass
+RUN yarn global add @angular/cli node-sass
