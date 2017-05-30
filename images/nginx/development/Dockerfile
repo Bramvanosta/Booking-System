@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:alpine
 
 MAINTAINER Bram van Osta <bramvanosta@gmail.com>
 
