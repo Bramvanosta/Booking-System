@@ -3,8 +3,7 @@ version: '2'
 services:
   bs_api:
     container_name: bs_api
-    build:
-      context: ./api
+    build: ./api
     volumes:
       - ./api:/var/www/html/api
 
@@ -18,17 +17,16 @@ services:
 
   bs_api_db:
     container_name: bs_api_db
-    image: postgres:latest
+    image: postgres:alpine
     environment:
       - "POSTGRES_USER=user"
       - "POSTGRES_PASSWORD=password"
 
   bs_client:
     container_name: bs_client
-    build:
-      context: ./client
+    build: ./client
     working_dir: /var/www/html/client
-    command: npm run start
+    command: "sh -c 'yarn && npm start'"
     volumes:
       - ./client:/var/www/html/client
     ports:

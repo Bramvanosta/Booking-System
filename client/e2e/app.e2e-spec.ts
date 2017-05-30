@@ -1,6 +1,6 @@
 import { BookingSystemPage } from './app.po';
 
-describe('booking-system App', function() {
+describe('booking-system App', () => {
   let page: BookingSystemPage;
 
   beforeEach(() => {
