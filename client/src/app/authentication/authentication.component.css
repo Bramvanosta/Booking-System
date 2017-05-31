@@ -1,0 +1,13 @@
+.mdc-layout-grid {
+  --mdc-layout-grid-gutter: 0;
+  --mdc-layout-grid-margin: 0;
+}
+
+.authentication__column {
+  height: 100vh;
+}
+
+.authentication__column.authentication__column--left {
+  background: url('../../assets/images/camping-stock-1.jpg') no-repeat center;
+  background-size: cover;
+}
