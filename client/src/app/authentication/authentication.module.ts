@@ -11,6 +11,7 @@ import { AuthenticationComponent } from './authentication.component';
 import { SigninComponent } from './signin/signin.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(authenticationRoutes),
+    SharedModule,
     MdInputModule,
     MdButtonModule,
     MdSnackBarModule
