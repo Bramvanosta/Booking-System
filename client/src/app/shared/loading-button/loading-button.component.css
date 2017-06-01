@@ -1,0 +1,50 @@
+.loading-button {
+  min-width: initial;
+  transition: padding .3s ease;
+}
+
+.loading-button.loading-button--is-loading {
+  padding-right: 60px;
+}
+
+.loading-button__container {
+  position: relative;
+}
+
+.loading-button__loader {
+  position: absolute;
+  right: -35px;
+  top: calc(100% - 15px);
+  animation: rotator 1.4s linear infinite;
+}
+
+.loading-button__loader circle {
+  stroke: #FFFFFF;
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.4s ease-in-out infinite;
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}

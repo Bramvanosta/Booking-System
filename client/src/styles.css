@@ -1,5 +1,12 @@
+/* Import styles */
 @import '~reset-css/reset.css';
 @import '~@material/layout-grid/dist/mdc.layout-grid.css';
 @import '~@material/typography/dist/mdc.typography.css';
 @import '~@material/elevation/dist/mdc.elevation.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Global variables */
+:root {
+  --mdc-theme-primary: #3f51b5;
+  --mdc-theme-accent: #ff4081;
+}
