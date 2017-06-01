@@ -1,0 +1,66 @@
+.authentication__form {
+  width: 350px;
+}
+
+.authentication__input {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.authentication__submit {
+  min-width: initial;
+  transition: padding .3s ease;
+}
+
+.authentication__submit.authentication__submit--is-loading {
+  padding-right: 60px;
+}
+
+.authentication__submit-container {
+  position: relative;
+}
+
+.button__loader {
+  position: absolute;
+  right: -35px;
+  top: calc(100% - 15px);
+  animation: rotator 1.4s linear infinite;
+}
+
+.button__loader .path {
+  stroke: #FFFFFF;
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.4s ease-in-out infinite;
+}
+
+/* Remove yellow background from Chrome autocomplete */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  -webkit-text-fill-color: initial !important;
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}
+
