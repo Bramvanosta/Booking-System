@@ -1,3 +1,38 @@
-<p>
-  signin works!
-</p>
+<h1 class="mdc-typography--display1 mdc-typography--adjust-margin">Login</h1>
+
+<form class="authentication__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <md-input-container class="authentication__input">
+    <input mdInput
+           type="text"
+           placeholder="Email"
+           formControlName="email">
+    <md-error>Email field is required</md-error>
+  </md-input-container>
+
+  <md-input-container class="authentication__input">
+    <input mdInput
+           type="password"
+           placeholder="Password"
+           formControlName="password">
+    <md-error>Password field is required</md-error>
+  </md-input-container>
+
+  <button class="authentication__submit"
+          [ngClass]="{'authentication__submit--is-loading': isLoading}"
+          md-raised-button
+          type="submit"
+          color="primary"
+          [disabled]="!form.valid">
+    <span class="authentication__submit-container">
+      <span>Login</span>
+      <svg class="button__loader"
+           *ngIf="isLoading"
+           width="15px"
+           height="15px"
+           viewBox="0 0 66 66"
+           xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </span>
+  </button>
+</form>
