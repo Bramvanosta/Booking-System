@@ -25,6 +25,7 @@
     "@material/elevation": "^0.1.8",
     "@material/layout-grid": "^0.1.2",
     "@material/typography": "^0.2.2",
+    "angular2-token": "^0.2.0-beta.11",
     "core-js": "^2.4.1",
     "reset-css": "^2.2.0",
     "rxjs": "^5.1.0",

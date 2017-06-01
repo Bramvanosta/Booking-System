@@ -3,19 +3,21 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { MdButtonModule, MdInputModule } from '@angular/material';
+import { MdButtonModule, MdInputModule, MdSnackBarModule } from '@angular/material';
 
 import { authenticationRoutes } from './authentication.routes';
 
 import { AuthenticationComponent } from './authentication.component';
 import { SigninComponent } from './signin/signin.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 @NgModule({
   declarations: [
     AuthenticationComponent,
     SigninComponent,
-    ForgotPasswordComponent
+    ResetPasswordComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     RouterModule.forChild(authenticationRoutes),
     MdInputModule,
     MdButtonModule,
+    MdSnackBarModule
   ]
 })
 export class AuthenticationModule {
