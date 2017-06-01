@@ -17,6 +17,7 @@ export class AppComponent {
       signInRedirect: '/',
       signOutPath: 'sign_out',
       validateTokenPath: 'validate_token',
+      resetPasswordPath: 'password'
     })
   }
 }

@@ -11,7 +11,6 @@ import { Angular2TokenService } from 'angular2-token';
 export class SigninComponent implements OnInit {
   form: FormGroup;
   isLoading: boolean = false;
-  serverError: string = '';
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: Angular2TokenService,
@@ -38,8 +37,8 @@ export class SigninComponent implements OnInit {
           console.log(this.authenticationService.currentUserData);
         },
         (error) => {
-          this.serverError = error.json().errors[0];
-          this.snackBar.open(this.serverError, 'hide', {duration: 5000});
+          const errorMessage = error.json().errors[0];
+          this.snackBar.open(errorMessage, 'hide', {duration: 6000});
         }
       )
   }
