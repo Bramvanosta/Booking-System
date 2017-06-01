@@ -6,7 +6,11 @@
            type="text"
            placeholder="Email"
            formControlName="email">
-    <md-error>Email field is required</md-error>
+    <md-error *ngIf="form.controls.email.errors &&
+                     form.controls.email.errors.required">Email field is required</md-error>
+    <md-error *ngIf="form.controls.email.errors &&
+                     form.controls.email.errors.email &&
+                     !form.controls.email.errors.required">Please enter a valid email</md-error>
   </md-input-container>
 
   <md-input-container class="authentication__input">

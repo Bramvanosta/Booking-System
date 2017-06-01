@@ -116,9 +116,9 @@ Rails.application.routes.draw do
           resources :rentals
           resources :seasons
           resources :rights
+          resources :users
         end
 
-        resources :users
       end
     end
   end
