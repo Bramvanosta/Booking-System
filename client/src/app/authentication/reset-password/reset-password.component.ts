@@ -33,6 +33,7 @@ export class ResetPasswordComponent implements OnInit {
       .finally(() => this.isLoading = false)
       .subscribe(
         (result) => {
+          console.log(result.json()); // TODO Remove this log
           const validationMessage = result.json().message;
           this.snackBar.open(validationMessage, 'hide', {duration: 6000});
           this.router.navigate(['/login']);

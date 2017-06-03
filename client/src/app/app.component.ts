@@ -15,9 +15,13 @@ export class AppComponent {
 
       signInPath: 'sign_in',
       signInRedirect: '/',
+      signInStoredUrlStorageKey: 'redirectAfterLoginPath',
       signOutPath: 'sign_out',
+      signOutFailedValidate: true,
       validateTokenPath: 'validate_token',
-      resetPasswordPath: 'password'
+      resetPasswordPath: 'password',
+      resetPasswordCallback: 'http://localhost:4200/update-password',
+      updatePasswordPath: 'password'
     })
   }
 }
