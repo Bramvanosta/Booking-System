@@ -33,8 +33,8 @@ export class SigninComponent implements OnInit {
       .finally(() => this.isLoading = false)
       .subscribe(
         (result) => {
-          console.log(result.json());
-          console.log(this.authenticationService.currentUserData);
+          console.log(result.json()); // TODO Remove this log
+          console.log(this.authenticationService.currentUserData); // TODO Remove this log
         },
         (error) => {
           const errorMessage = error.json().errors[0];
