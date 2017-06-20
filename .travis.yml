@@ -1,5 +1,7 @@
 sudo: required
 dist: trusty
+group: edge
+
 language: node_js
 node_js:
   - '6.9'
