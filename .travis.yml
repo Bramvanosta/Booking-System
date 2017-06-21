@@ -12,6 +12,9 @@ apt:
   packages:
     - google-chrome-stable
     - google-chrome-beta
+    
+notifications:
+  slack: bramvanosta:EzBQl2zZ3yXmFo5sVNBAP40H
 
 before_install:
   - export CHROME_BIN=chromium-browser
