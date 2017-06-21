@@ -14,6 +14,7 @@ apt:
     - google-chrome-beta
     
 notifications:
+  email: false
   slack: bramvanosta:EzBQl2zZ3yXmFo5sVNBAP40H
 
 before_install:
