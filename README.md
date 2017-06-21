@@ -1,0 +1,2 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/83c5e7a536e64026a404ad84cf561722)](https://www.codacy.com/app/bramvanosta/Booking-System?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Bramvanosta/Booking-System&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/Bramvanosta/Booking-System.svg?branch=master)](https://travis-ci.org/Bramvanosta/Booking-System)
