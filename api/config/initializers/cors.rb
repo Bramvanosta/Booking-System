@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:4200', 'booking-system.dev'
+    origins 'booking-system.dev:4200', 'booking-system.dev'
     resource '*',
              :headers => :any,
              :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],

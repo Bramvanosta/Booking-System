@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
 import { Angular2TokenService } from 'angular2-token';
+
 import 'rxjs/add/operator/finally';
 
 @Component({
