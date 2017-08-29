@@ -1,14 +1,16 @@
 <main class="mdc-typography mdc-layout-grid">
-  <section class="authentication__column
-                  authentication__column--left
-                  mdc-layout-grid__cell
-                  mdc-layout-grid__cell--span-6
-                  mdc-elevation--z6">
-  </section>
-  <section class="authentication__column
-                  authentication__column--right
-                  mdc-layout-grid__cell
-                  mdc-layout-grid__cell--span-6">
-    <router-outlet></router-outlet>
-  </section>
+  <div class="mdc-layout-grid__inner">
+    <section class="authentication__column
+                    authentication__column--left
+                    mdc-layout-grid__cell
+                    mdc-layout-grid__cell--span-6
+                    mdc-elevation--z6">
+    </section>
+    <section class="authentication__column
+                    authentication__column--right
+                    mdc-layout-grid__cell
+                    mdc-layout-grid__cell--span-6">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
 </main>

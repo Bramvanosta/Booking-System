@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
 import { MdSnackBar } from '@angular/material';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-update-password',
