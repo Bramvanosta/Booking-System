@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Angular2TokenService } from 'angular2-token';
 import { MdSnackBar } from '@angular/material';
 import 'rxjs/add/operator/finally';
 
@@ -15,7 +14,6 @@ export class UpdatePasswordComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-              private authenticationService: Angular2TokenService,
               private snackBar: MdSnackBar,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -33,26 +31,26 @@ export class UpdatePasswordComponent implements OnInit {
     const resetPasswordToken = this.route.snapshot.params['token'];
     this.isLoading = true;
 
-    this.authenticationService.updatePassword(
-      {
-        password: password,
-        passwordConfirmation: passwordConfirmation,
-        passwordCurrent: null,
-        resetPasswordToken: resetPasswordToken
-      })
-      .finally(() => this.isLoading = false)
-      .subscribe(
-        (result) => {
-          console.log(result.json()); // TODO Remove this log
-          const validationMessage = result.json().message;
-          this.snackBar.open(validationMessage, 'hide', {duration: 6000});
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          const errorMessage = error.json().errors[0];
-          this.snackBar.open(errorMessage, 'hide', {duration: 6000});
-        }
-      )
+    // this.authenticationService.updatePassword(
+    //   {
+    //     password: password,
+    //     passwordConfirmation: passwordConfirmation,
+    //     passwordCurrent: null,
+    //     resetPasswordToken: resetPasswordToken
+    //   })
+    //   .finally(() => this.isLoading = false)
+    //   .subscribe(
+    //     (result) => {
+    //       console.log(result.json()); // TODO Remove this log
+    //       const validationMessage = result.json().message;
+    //       this.snackBar.open(validationMessage, 'hide', {duration: 6000});
+    //       this.router.navigate(['/login']);
+    //     },
+    //     (error) => {
+    //       const errorMessage = error.json().errors[0];
+    //       this.snackBar.open(errorMessage, 'hide', {duration: 6000});
+    //     }
+    //   )
   }
 
 }

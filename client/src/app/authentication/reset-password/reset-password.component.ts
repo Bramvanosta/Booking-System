@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
-import { Angular2TokenService } from 'angular2-token';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/finally';
 
@@ -15,7 +14,6 @@ export class ResetPasswordComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-              private authenticationService: Angular2TokenService,
               private snackBar: MdSnackBar,
               private router: Router) {
   }
@@ -30,20 +28,20 @@ export class ResetPasswordComponent implements OnInit {
     const email = this.form.value['email'];
     this.isLoading = true;
 
-    this.authenticationService.resetPassword({ email: email })
-      .finally(() => this.isLoading = false)
-      .subscribe(
-        (result) => {
-          console.log(result.json()); // TODO Remove this log
-          const validationMessage = result.json().message;
-          this.snackBar.open(validationMessage, 'hide', {duration: 6000});
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          const errorMessage = error.json().errors[0];
-          this.snackBar.open(errorMessage, 'hide', {duration: 6000});
-        }
-      )
+    // this.authenticationService.resetPassword({ email: email })
+    //   .finally(() => this.isLoading = false)
+    //   .subscribe(
+    //     (result) => {
+    //       console.log(result.json()); // TODO Remove this log
+    //       const validationMessage = result.json().message;
+    //       this.snackBar.open(validationMessage, 'hide', {duration: 6000});
+    //       this.router.navigate(['/login']);
+    //     },
+    //     (error) => {
+    //       const errorMessage = error.json().errors[0];
+    //       this.snackBar.open(errorMessage, 'hide', {duration: 6000});
+    //     }
+    //   )
   }
 
 }

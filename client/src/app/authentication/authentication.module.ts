@@ -7,11 +7,14 @@ import { MdButtonModule, MdInputModule, MdSnackBarModule } from '@angular/materi
 
 import { authenticationRoutes } from './authentication.routes';
 
+import { SharedModule } from '../shared/shared.module';
+
+import { AuthenticationService } from './authentication.service';
+
 import { AuthenticationComponent } from './authentication.component';
 import { SigninComponent } from './signin/signin.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
-import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { SharedModule } from '../shared/shared.module';
     MdInputModule,
     MdButtonModule,
     MdSnackBarModule
+  ],
+  providers: [
+    AuthenticationService
   ]
 })
 export class AuthenticationModule {
