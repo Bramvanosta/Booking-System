@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
@@ -15,6 +15,8 @@ import { effects } from './store/app.effects';
 import { environment } from '../environments/environment';
 
 import { AuthenticationModule } from './authentication/authentication.module';
+
+import { AuthenticationInterceptor } from './shared/authentication.interceptors';
 
 import { AppComponent } from './app.component';
 
@@ -33,7 +35,9 @@ import { AppComponent } from './app.component';
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

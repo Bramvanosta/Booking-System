@@ -9,7 +9,6 @@ import { authenticationRoutes } from './authentication.routes';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { AuthenticationService } from './authentication.service';
 
 import { AuthenticationComponent } from './authentication.component';
 import { SigninComponent } from './signin/signin.component';
@@ -32,9 +31,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
     MdButtonModule,
     MdSnackBarModule
   ],
-  providers: [
-    AuthenticationService
-  ]
+  providers: []
 })
 export class AuthenticationModule {
 }

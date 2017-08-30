@@ -13,7 +13,7 @@ import * as AuthenticationActions from '../store/authentication.actions';
 })
 export class SigninComponent implements OnInit {
   form: FormGroup;
-  isLoading: boolean = false;
+  isLoading = false;
 
   constructor(private formBuilder: FormBuilder,
               private store: Store<fromApp.AppState>,
@@ -31,7 +31,7 @@ export class SigninComponent implements OnInit {
     const email = this.form.value['email'];
     const password = this.form.value['password'];
 
-    this.store.dispatch(new AuthenticationActions.TrySignin({email, password}));
+    this.store.dispatch(new AuthenticationActions.TrySignin({ email, password }));
   }
 
 }
