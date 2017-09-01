@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 
+import { Observable } from 'rxjs/Observable';
+
 import * as fromApp from '../../store/app.reducers';
 import * as AuthenticationActions from '../store/authentication.actions';
 
@@ -13,12 +15,15 @@ import * as AuthenticationActions from '../store/authentication.actions';
 })
 export class SigninComponent implements OnInit {
   form: FormGroup;
+  authenticationState: Observable<any>;
 
   constructor(private formBuilder: FormBuilder,
               private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
+    this.authenticationState = this.store.select('authentication');
+
     this.form = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]]

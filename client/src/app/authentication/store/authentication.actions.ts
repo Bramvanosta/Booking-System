@@ -8,6 +8,7 @@ export const TRY_UPDATE_PASSWORD = 'TRY_UPDATE_PASSWORD';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const LOGOUT = 'LOGOUT';
 export const SET_AUTHENTICATION_INFO = 'SET_AUTHENTICATION_INFO';
+export const ON_ERROR = 'ON_ERROR';
 
 export class TrySignin implements Action {
   readonly type = TRY_SIGNIN;
@@ -40,7 +41,7 @@ export class ResetPassword implements Action {
 export class TryUpdatePassword implements Action {
   readonly type = TRY_UPDATE_PASSWORD;
 
-  constructor(public payload: {password: string, passwordConfirmation: string, resetPasswordToken: string}) {
+  constructor(public payload: { password: string, passwordConfirmation: string, resetPasswordToken: string }) {
   }
 }
 
@@ -62,11 +63,17 @@ export class SetAuthenticationInfo implements Action {
   }
 }
 
-export type AuthenticationActions = TrySignin | 
-                                    Signin | 
-                                    TryResetPassword |
-                                    ResetPassword | 
-                                    TryUpdatePassword | 
-                                    UpdatePassword | 
-                                    Logout | 
-                                    SetAuthenticationInfo;
+export class OnError implements Action {
+  readonly type = ON_ERROR;
+}
+
+export type AuthenticationActions =
+  TrySignin |
+  Signin |
+  TryResetPassword |
+  ResetPassword |
+  TryUpdatePassword |
+  UpdatePassword |
+  Logout |
+  SetAuthenticationInfo |
+  OnError;

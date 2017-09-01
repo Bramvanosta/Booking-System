@@ -7,10 +7,12 @@
            placeholder="Email"
            formControlName="email">
     <md-error *ngIf="form.controls.email.errors &&
-                     form.controls.email.errors.required">Email field is required</md-error>
+                     form.controls.email.errors.required">Email field is required
+    </md-error>
     <md-error *ngIf="form.controls.email.errors &&
                      form.controls.email.errors.email &&
-                     !form.controls.email.errors.required">Please enter a valid email</md-error>
+                     !form.controls.email.errors.required">Please enter a valid email
+    </md-error>
   </md-input-container>
 
   <md-input-container class="authentication__input">
@@ -21,8 +23,8 @@
     <md-error>Password field is required</md-error>
   </md-input-container>
 
-  <app-loading-button label="Login" [loading]="isLoading" [disabled]="!form.valid"></app-loading-button>
+  <app-loading-button label="Login" [loading]="(authenticationState | async).loading"
+                      [disabled]="!form.valid"></app-loading-button>
 
   <a routerLink="/reset-password" md-button color="primary">Password forgotten?</a>
 </form>
-

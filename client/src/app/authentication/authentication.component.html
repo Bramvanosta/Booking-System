@@ -9,8 +9,9 @@
     <section class="authentication__column
                     authentication__column--right
                     mdc-layout-grid__cell
-                    mdc-layout-grid__cell--span-6">
-      <router-outlet></router-outlet>
+                    mdc-layout-grid__cell--span-6"
+             [@fadeAndScaleInOut]="getState(o)">
+      <router-outlet #o="outlet"></router-outlet>
     </section>
   </div>
 </main>

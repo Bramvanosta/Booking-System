@@ -19,7 +19,7 @@ import * as AuthenticationActions from '../authentication/store/authentication.a
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private store: Store<fromApp.AppState>) {
+  constructor(private store: Store<fromApp.AppState>) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -30,17 +30,12 @@ export class AuthenticationInterceptor implements HttpInterceptor {
           const client = event.headers.get('client');
           const expiry = event.headers.get('expiry');
           const uid = event.headers.get('uid');
-          localStorage.setItem('access-token', token);
-          localStorage.setItem('client', client);
-          localStorage.setItem('expiry', expiry);
-          localStorage.setItem('uid', uid);
           this.store.dispatch(new AuthenticationActions.SetAuthenticationInfo({ token, client, expiry, uid }));
         }
       }, (error) => {
         if (error instanceof HttpErrorResponse) {
           if (error.status === 401) {
             this.store.dispatch(new AuthenticationActions.Logout());
-            this.router.navigate(['/login']);
           }
         }
       })
