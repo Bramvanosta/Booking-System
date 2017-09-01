@@ -30,6 +30,10 @@ export function authReducer(state = initialState, action: AuthenticationActions.
         ...action.payload,
         authenticated: true,
       };
+    case (AuthenticationActions.RESET_PASSWORD):
+      return { ...initialState };
+    case (AuthenticationActions.UPDATE_PASSWORD):
+      return { ...initialState };
     case (AuthenticationActions.LOGOUT):
       return { ...initialState };
     case (AuthenticationActions.SET_AUTHENTICATION_INFO):

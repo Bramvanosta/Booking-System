@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MdSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
-import 'rxjs/add/operator/finally';
+
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../../store/app.reducers';
+import * as AuthenticationActions from '../store/authentication.actions';
 
 @Component({
   selector: 'app-reset-password',
@@ -11,11 +13,9 @@ import 'rxjs/add/operator/finally';
 })
 export class ResetPasswordComponent implements OnInit {
   form: FormGroup;
-  isLoading: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-              private snackBar: MdSnackBar,
-              private router: Router) {
+              private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
@@ -26,22 +26,8 @@ export class ResetPasswordComponent implements OnInit {
 
   onSubmit() {
     const email = this.form.value['email'];
-    this.isLoading = true;
 
-    // this.authenticationService.resetPassword({ email: email })
-    //   .finally(() => this.isLoading = false)
-    //   .subscribe(
-    //     (result) => {
-    //       console.log(result.json()); // TODO Remove this log
-    //       const validationMessage = result.json().message;
-    //       this.snackBar.open(validationMessage, 'hide', {duration: 6000});
-    //       this.router.navigate(['/login']);
-    //     },
-    //     (error) => {
-    //       const errorMessage = error.json().errors[0];
-    //       this.snackBar.open(errorMessage, 'hide', {duration: 6000});
-    //     }
-    //   )
+    this.store.dispatch(new AuthenticationActions.TryResetPassword(email));
   }
 
 }

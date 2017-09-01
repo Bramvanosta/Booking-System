@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Store } from '@ngrx/store';
-import { MdSnackBar } from '@angular/material';
 
 import * as fromApp from '../../store/app.reducers';
 import * as AuthenticationActions from '../store/authentication.actions';
@@ -13,11 +13,9 @@ import * as AuthenticationActions from '../store/authentication.actions';
 })
 export class SigninComponent implements OnInit {
   form: FormGroup;
-  isLoading = false;
 
   constructor(private formBuilder: FormBuilder,
-              private store: Store<fromApp.AppState>,
-              private snackBar: MdSnackBar) {
+              private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
