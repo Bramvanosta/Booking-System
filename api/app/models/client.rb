@@ -34,4 +34,6 @@ class Client < ApplicationRecord
   has_many :bookings
   has_many :persons
 
+  belongs_to :campground
+
 end

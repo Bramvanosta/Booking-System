@@ -291,6 +291,7 @@ namespace :db do
       # Create 25 Clients with one pitch booking each in low season
       25.times do |n|
         client = Client.create!(
+            campground_id: campground.id,
             title: Faker::Name.prefix,
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
@@ -339,6 +340,7 @@ namespace :db do
       # Create 10 Clients with one mobilehome booking each in low season
       10.times do
         client = Client.create!(
+            campground_id: campground.id,
             title: Faker::Name.prefix,
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
@@ -380,6 +382,7 @@ namespace :db do
       # Create 25 Clients with one pitch booking each in high season
       25.times do |n|
         client = Client.create!(
+            campground_id: campground.id,
             title: Faker::Name.prefix,
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
@@ -428,6 +431,7 @@ namespace :db do
       # Create 10 Clients with one mobilehome booking each in high season
       10.times do
         client = Client.create!(
+            campground_id: campground.id,
             title: Faker::Name.prefix,
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,

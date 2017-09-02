@@ -61,8 +61,7 @@ module Api::V1
 
     # Use callbacks to share common setup or constraints between actions.
     def set_access_rights
-      # @access_rights = current_v1_user.rights.where(campground_id: params[:campground_id])
-      @access_rights = User.find(1).rights.find_by(campground_id: params[:campground_id])
+      @access_rights = current_v1_user.rights.find_by(campground_id: params[:campground_id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -35,6 +35,7 @@ class Campground < ApplicationRecord
   has_many :seasons
   has_many :bookings
   has_many :rental_categories
+  has_many :clients
 
   has_many :users, through: :rights
 
