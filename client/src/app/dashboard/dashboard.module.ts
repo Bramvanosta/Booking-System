@@ -8,6 +8,8 @@ import { dashboardRoutes } from './dashboard.routes';
 import { SharedModule } from '../shared/shared.module';
 
 import { AuthenticationGuard } from '../shared/authentication.guard';
+import { DashboardGuard } from './dashboard.guard';
+import { BookingsGuard } from './bookings/bookings.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -34,7 +36,9 @@ import { HeaderWidgetComponent } from './core/header/widget/widget.component';
     MdIconModule,
   ],
   providers: [
-    AuthenticationGuard
+    AuthenticationGuard,
+    DashboardGuard,
+    BookingsGuard
   ]
 })
 export class DashboardModule {

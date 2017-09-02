@@ -10,7 +10,7 @@ export const authenticationRoutes: Routes = [
     path: '',
     component: AuthenticationComponent,
     children: [
-      { path: '', component: SigninComponent, data: { state: 'login' } },
+      { path: 'login', component: SigninComponent, data: { state: 'login' } },
       { path: 'reset-password', component: ResetPasswordComponent, data: { state: 'reset-password' } },
       { path: 'update-password', component: UpdatePasswordComponent, data: { state: 'update-password' } }
     ]

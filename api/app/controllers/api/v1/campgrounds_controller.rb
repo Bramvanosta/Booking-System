@@ -36,8 +36,7 @@ module Api::V1
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_campgrounds
-      # @campgrounds = current_v1_user.campgrounds
-      @campgrounds = User.find(1).campgrounds
+      @campgrounds = current_v1_user.campgrounds
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -47,8 +46,7 @@ module Api::V1
 
     # Use callbacks to share common setup or constraints between actions.
     def set_access_rights
-      # @access_rights = current_v1_user.rights.where(campground_id: params[:id])
-      @access_rights = User.find(1).rights.find_by(campground_id: params[:id])
+      @access_rights = current_v1_user.rights.find_by(campground_id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

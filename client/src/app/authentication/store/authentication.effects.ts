@@ -24,7 +24,7 @@ export class AuthenticationEffects {
     .ofType(AuthenticationActions.TRY_SIGNIN)
     .map(toPayload)
     .mergeMap((payload: { email: string, password: string }) => {
-      return this.httpClient.post('http://api.booking-system.dev/v1/auth/sign_in', {
+      return this.httpClient.post('auth/sign_in', {
         email: payload.email,
         password: payload.password
       })
@@ -42,8 +42,7 @@ export class AuthenticationEffects {
         })
         .catch((errorResponse: HttpErrorResponse) => {
           const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
-          this.snackBar.open(errorMessage, 'hide', { duration: 6000 });
-          return Observable.of(new AuthenticationActions.OnError());
+          return Observable.of(new AuthenticationActions.OnAuthenticationError(errorMessage));
         })
     });
 
@@ -51,7 +50,7 @@ export class AuthenticationEffects {
     .ofType(AuthenticationActions.TRY_RESET_PASSWORD)
     .map(toPayload)
     .mergeMap((payload: string) => {
-      return this.httpClient.post('http://api.booking-system.dev/v1/auth/password', {
+      return this.httpClient.post('auth/password', {
         email: payload,
         redirect_url: 'http://booking-system.dev/update-password'
       })
@@ -64,8 +63,7 @@ export class AuthenticationEffects {
         })
         .catch((errorResponse: HttpErrorResponse) => {
           const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
-          this.snackBar.open(errorMessage, 'hide', { duration: 6000 });
-          return Observable.of(new AuthenticationActions.OnError());
+          return Observable.of(new AuthenticationActions.OnAuthenticationError(errorMessage));
         })
     });
 
@@ -73,7 +71,7 @@ export class AuthenticationEffects {
     .ofType(AuthenticationActions.TRY_UPDATE_PASSWORD)
     .map(toPayload)
     .mergeMap((payload: { password: string, passwordConfirmation: string, resetPasswordToken: string }) => {
-      return this.httpClient.put('http://api.booking-system.dev/v1/auth/password', {
+      return this.httpClient.put('uth/password', {
         password: payload.password,
         password_confirmation: payload.passwordConfirmation,
         reset_password_token: payload.resetPasswordToken
@@ -87,8 +85,7 @@ export class AuthenticationEffects {
         })
         .catch((errorResponse: HttpErrorResponse) => {
           const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
-          this.snackBar.open(errorMessage, 'hide', { duration: 6000 });
-          return Observable.of(new AuthenticationActions.OnError());
+          return Observable.of(new AuthenticationActions.OnAuthenticationError(errorMessage));
         })
     });
 
@@ -115,7 +112,7 @@ export class AuthenticationEffects {
   @Effect() authenticationVerification = this.actions$
     .ofType(AuthenticationActions.TRY_AUTHENTICATION_VERIFICATION)
     .mergeMap(() => {
-      return this.httpClient.get('http://api.booking-system.dev/v1/auth/validate_token')
+      return this.httpClient.get('auth/validate_token')
         .map((json: { data }) => json.data)
         .map((data: { email: string, first_name: string, last_name: string }) => {
           this.router.navigate(['/dashboard']);
@@ -130,9 +127,15 @@ export class AuthenticationEffects {
         })
         .catch((errorResponse: HttpErrorResponse) => {
           const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
-          this.snackBar.open(errorMessage, 'hide', { duration: 6000 });
-          return Observable.of(new AuthenticationActions.OnError());
+          return Observable.of(new AuthenticationActions.OnAuthenticationError(errorMessage));
         })
+    });
+
+  @Effect({ dispatch: false }) authentificationOnError = this.actions$
+    .ofType(AuthenticationActions.ON_AUTHENTICATION_ERROR)
+    .map(toPayload)
+    .do((payload: string) => {
+      this.snackBar.open(payload, 'hide', { duration: 6000 });
     });
 
   @Effect() authenticationInit = defer(() => {

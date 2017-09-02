@@ -3,15 +3,15 @@ import { Client } from '../clients/client.model';
 export class Booking {
   public id: number;
   public status: string;
-  arrivalDate: string;
-  departureDate: string;
+  arrival_date: string;
+  departure_date: string;
   client: Client;
 
-  constructor(id: number, status: string, arrivalDate: string, departureDate: string, client: Client) {
+  constructor(id: number, status: string, arrival_date: string, departure_date: string, client: Client) {
     this.id = id;
     this.status = status;
-    this.arrivalDate = arrivalDate;
-    this.departureDate = departureDate;
+    this.arrival_date = arrival_date;
+    this.departure_date = departure_date;
     this.client = client;
   }
 }

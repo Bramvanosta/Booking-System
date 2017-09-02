@@ -24,7 +24,7 @@ const initialState: State = {
   loading: false
 };
 
-export function authReducer(state = initialState, action: AuthenticationActions.AuthenticationActions) {
+export function authenticationReducer(state = initialState, action: AuthenticationActions.AuthenticationActions) {
   switch (action.type) {
     case (AuthenticationActions.TRY_SIGNIN):
       return {
@@ -59,7 +59,7 @@ export function authReducer(state = initialState, action: AuthenticationActions.
         ...state,
         ...action.payload
       };
-    case (AuthenticationActions.ON_ERROR):
+    case (AuthenticationActions.ON_AUTHENTICATION_ERROR):
       return { ...initialState };
     default:
       return state;
