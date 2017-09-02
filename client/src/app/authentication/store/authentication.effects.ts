@@ -3,16 +3,18 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { Actions, Effect, toPayload } from '@ngrx/effects';
 
 import { Observable } from 'rxjs/Observable';
+import { defer } from 'rxjs/observable/defer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/empty';
 
+import * as fromApp from '../../store/app.reducers';
 import * as AuthenticationActions from './authentication.actions';
 
 @Injectable()
@@ -26,6 +28,7 @@ export class AuthenticationEffects {
         email: payload.email,
         password: payload.password
       })
+        .map((json: { data }) => json.data)
         .map((data: { email: string, first_name: string, last_name: string }) => {
           this.router.navigate(['/dashboard']);
           return {
@@ -109,7 +112,42 @@ export class AuthenticationEffects {
       this.router.navigate(['/']);
     });
 
+  @Effect() authenticationVerification = this.actions$
+    .ofType(AuthenticationActions.TRY_AUTHENTICATION_VERIFICATION)
+    .mergeMap(() => {
+      return this.httpClient.get('http://api.booking-system.dev/v1/auth/validate_token')
+        .map((json: { data }) => json.data)
+        .map((data: { email: string, first_name: string, last_name: string }) => {
+          this.router.navigate(['/dashboard']);
+          return {
+            type: AuthenticationActions.SIGNIN,
+            payload: {
+              email: data.email,
+              firstName: data.first_name,
+              lastName: data.last_name
+            }
+          }
+        })
+        .catch((errorResponse: HttpErrorResponse) => {
+          const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
+          this.snackBar.open(errorMessage, 'hide', { duration: 6000 });
+          return Observable.of(new AuthenticationActions.OnError());
+        })
+    });
+
+  @Effect() authenticationInit = defer(() => {
+    const token = localStorage.getItem('access-token');
+    const client = localStorage.getItem('client');
+    const expiry = localStorage.getItem('expiry');
+    const uid = localStorage.getItem('uid');
+    if (token && client && uid) {
+      this.store.dispatch(new AuthenticationActions.SetAuthenticationInfo({ token, client, expiry, uid }));
+      return Observable.of(new AuthenticationActions.TryAuthenticationVerification());
+    }
+  });
+
   constructor(private actions$: Actions,
+              private store: Store<fromApp.AppState>,
               private httpClient: HttpClient,
               private router: Router,
               private snackBar: MdSnackBar) {

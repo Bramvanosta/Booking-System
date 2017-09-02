@@ -7,6 +7,7 @@ export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const TRY_UPDATE_PASSWORD = 'TRY_UPDATE_PASSWORD';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const LOGOUT = 'LOGOUT';
+export const TRY_AUTHENTICATION_VERIFICATION = 'TRY_AUTHENTICATION_VERIFICATION';
 export const SET_AUTHENTICATION_INFO = 'SET_AUTHENTICATION_INFO';
 export const ON_ERROR = 'ON_ERROR';
 
@@ -56,6 +57,10 @@ export class Logout implements Action {
   readonly type = LOGOUT;
 }
 
+export class TryAuthenticationVerification implements Action {
+  readonly type = TRY_AUTHENTICATION_VERIFICATION;
+}
+
 export class SetAuthenticationInfo implements Action {
   readonly type = SET_AUTHENTICATION_INFO;
 
@@ -75,5 +80,6 @@ export type AuthenticationActions =
   TryUpdatePassword |
   UpdatePassword |
   Logout |
+  TryAuthenticationVerification |
   SetAuthenticationInfo |
   OnError;

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MdIconModule, MdTabsModule } from '@angular/material';
+import { MdIconModule } from '@angular/material';
 
 import { dashboardRoutes } from './dashboard.routes';
 
 import { SharedModule } from '../shared/shared.module';
+
+import { AuthenticationGuard } from '../shared/authentication.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -31,7 +33,9 @@ import { HeaderWidgetComponent } from './core/header/widget/widget.component';
     SharedModule,
     MdIconModule,
   ],
-  providers: []
+  providers: [
+    AuthenticationGuard
+  ]
 })
 export class DashboardModule {
 }

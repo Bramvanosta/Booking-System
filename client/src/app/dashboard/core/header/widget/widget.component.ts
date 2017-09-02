@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
+import { Observable } from 'rxjs/Observable';
+
 import * as fromApp from '../../../../store/app.reducers';
 import * as AuthenticationActions from '../../../../authentication/store/authentication.actions';
 
@@ -11,11 +13,13 @@ import * as AuthenticationActions from '../../../../authentication/store/authent
   styleUrls: ['./widget.component.css']
 })
 export class HeaderWidgetComponent implements OnInit {
+  authenticationState: Observable<any>;
 
   constructor(private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
+    this.authenticationState = this.store.select('authentication');
   }
 
   onLogout() {
