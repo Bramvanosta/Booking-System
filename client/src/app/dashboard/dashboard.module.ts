@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthenticationGuard } from '../shared/authentication.guard';
 import { DashboardGuard } from './dashboard.guard';
 import { BookingsGuard } from './bookings/bookings.guard';
+import { ClientsGuard } from './clients/clients.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -38,7 +39,8 @@ import { HeaderWidgetComponent } from './core/header/widget/widget.component';
   providers: [
     AuthenticationGuard,
     DashboardGuard,
-    BookingsGuard
+    BookingsGuard,
+    ClientsGuard
   ]
 })
 export class DashboardModule {

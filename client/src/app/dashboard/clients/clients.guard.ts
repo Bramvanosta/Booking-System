@@ -7,21 +7,21 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
 
 import * as fromApp from '../../store/app.reducers';
-import * as fromBookings from './store/bookings.reducers';
-import * as BookingsActions from './store/bookings.actions';
+import * as fromClients from './store/clients.reducers';
+import * as ClientsActions from './store/clients.actions';
 
 @Injectable()
-export class BookingsGuard implements CanActivate {
+export class ClientsGuard implements CanActivate {
 
   constructor(private store: Store<fromApp.AppState>) {
   }
 
   canActivate(): Observable<boolean> {
-    return this.store.select('bookings')
+    return this.store.select('clients')
       .take(1)
-      .mergeMap((bookingsState: fromBookings.State) => {
-        if (!bookingsState.bookings.length) {
-          this.store.dispatch(new BookingsActions.FetchBookings());
+      .mergeMap((clientsState: fromClients.State) => {
+        if (!clientsState.clients.length) {
+          this.store.dispatch(new ClientsActions.FetchClients());
         }
         return Observable.of(true);
       });

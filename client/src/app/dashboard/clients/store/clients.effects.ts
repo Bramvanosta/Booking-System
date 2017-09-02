@@ -9,46 +9,37 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/take';
 
-import * as BookingsActions from './clients.actions';
+import * as ClientsActions from './clients.actions';
 import * as fromApp from '../../../store/app.reducers';
 import * as fromCampgrounds from '../../campgrounds/store/campgrounds.reducers';
 
-import { Booking } from '../booking.model';
+import { Client } from '../client.model';
 
 @Injectable()
-export class BookingsEffects {
+export class ClientsEffects {
 
-  @Effect() bookingsFetchBookings: Observable<Action> = this.actions$
-    .ofType(BookingsActions.FETCH_BOOKINGS)
+  @Effect() clientsFetchClients: Observable<Action> = this.actions$
+    .ofType(ClientsActions.FETCH_CLIENTS)
     .mergeMap(() => {
       return this.store.select('campgrounds')
         .take(1)
         .mergeMap((campgroundsState: fromCampgrounds.State) => {
-          return this.httpClient.get<Booking[]>(`campgrounds/${campgroundsState.currentCampground.id}/bookings`)
-            .map((bookings: Booking[]) => {
-              const formattedBookings = bookings.map((booking) => {
-                return {
-                  id: booking.id,
-                  status: booking.status,
-                  arrival_date: booking.arrival_date,
-                  departure_date: booking.departure_date,
-                  client: booking.client
-                }
-              });
+          return this.httpClient.get<Client[]>(`campgrounds/${campgroundsState.currentCampground.id}/clients`)
+            .map((clients: Client[]) => {
               return {
-                type: BookingsActions.SET_BOOKINGS,
-                payload: formattedBookings
+                type: ClientsActions.SET_CLIENTS,
+                payload: clients
               }
             })
             .catch((errorResponse: HttpErrorResponse) => {
               const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
-              return Observable.of(new BookingsActions.OnBookingsError(errorMessage));
+              return Observable.of(new ClientsActions.OnClientsError(errorMessage));
             })
         })
     });
 
-  @Effect({ dispatch: false }) bookingsOnError = this.actions$
-    .ofType(BookingsActions.ON_BOOKINGS_ERROR)
+  @Effect({ dispatch: false }) clientsOnError = this.actions$
+    .ofType(ClientsActions.ON_CLIENTS_ERROR)
     .map(toPayload)
     .do((payload: string) => {
       this.snackBar.open(payload, 'hide', { duration: 6000 });

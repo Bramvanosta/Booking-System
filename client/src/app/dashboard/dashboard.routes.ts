@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { AuthenticationGuard } from '../shared/authentication.guard';
 import { DashboardGuard } from './dashboard.guard';
 import { BookingsGuard } from './bookings/bookings.guard';
+import { ClientsGuard } from './clients/clients.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +18,7 @@ export const dashboardRoutes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'bookings', component: BookingsComponent, canActivate: [BookingsGuard] },
-      { path: 'clients', component: ClientsComponent }
+      { path: 'clients', component: ClientsComponent, canActivate: [ClientsGuard] }
     ]
   }
 ];
