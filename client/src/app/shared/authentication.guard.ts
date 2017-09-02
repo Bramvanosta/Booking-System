@@ -21,7 +21,7 @@ export class AuthenticationGuard implements CanActivate {
       .take(1)
       .map((authenticationState: fromAuthentication.State) => {
         if (!authenticationState.authenticated) {
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         }
         return authenticationState.authenticated;
       });

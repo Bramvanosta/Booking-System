@@ -56,7 +56,7 @@ export class AuthenticationEffects {
       })
         .map((data: { message: string }) => {
           this.snackBar.open(data.message, 'hide', { duration: 6000 });
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
           return {
             type: AuthenticationActions.RESET_PASSWORD
           }
@@ -78,7 +78,7 @@ export class AuthenticationEffects {
       })
         .map((data: { message: string }) => {
           this.snackBar.open(data.message, 'hide', { duration: 6000 });
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
           return {
             type: AuthenticationActions.RESET_PASSWORD
           }
@@ -106,7 +106,7 @@ export class AuthenticationEffects {
       localStorage.removeItem('client');
       localStorage.removeItem('expiry');
       localStorage.removeItem('uid');
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     });
 
   @Effect() authenticationVerification = this.actions$
