@@ -1,0 +1,79 @@
+.c-header {
+  --overlay-black: rgba(0, 0, 0, .25);
+  background: linear-gradient(var(--overlay-black), var(--overlay-black)), url('../../../../assets/images/camping-stock-1.jpg') center / cover;
+  padding: 1em 5em 0 5em;
+  color: #ffffff;
+}
+
+.c-header__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.c-header__title {
+  font-size: 1.5em;
+}
+
+.c-header__secondary-nav-item {
+  margin-left: auto;
+}
+
+.c-header__content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: var(--container-width);
+  margin: 5em auto;
+}
+
+.c-header__welcome {
+  font-size: 4em;
+  font-weight: lighter;
+  margin-bottom: 0.2em;
+}
+
+.c-header__info {
+  font-size: 1.2em;
+}
+
+.c-header__primary-nav {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.c-header__primary-nav-item {
+  display: inline-block;
+  position: relative;
+  padding: 0 0.75em 0.75em;
+  margin: 0 0.75em;
+  font-size: 1.2em;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.c-header__primary-nav-item:first-of-type {
+  margin-left: 0;
+}
+
+.c-header__primary-nav-item::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  display: block;
+  width: 0;
+  height: 4px;
+  background-color: var(--mdc-theme-accent);
+
+  transition: width .3s ease, left .3s ease;
+}
+
+.c-header__primary-nav-item.active::after {
+  width: 100%;
+  left: 0;
+
+  transition-delay: .3s;
+}

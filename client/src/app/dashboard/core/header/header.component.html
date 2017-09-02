@@ -1,0 +1,27 @@
+<header class="c-header">
+  <div class="c-header__toolbar">
+    <h1 class="c-header__title">Booking System</h1>
+    <nav class="c-header__secondary-nav">
+      <a>
+        <md-icon class="c-header__secondary-nav-item">settings</md-icon>
+      </a>
+    </nav>
+  </div>
+
+  <div class="c-header__content">
+    <div class="c-header__content--left">
+      <h2 class="c-header__welcome">Welcome back!</h2>
+      <span class="c-header__info">You have 3 new bookings</span>
+    </div>
+    <div class="c-header__content--right">
+      <app-header-widget></app-header-widget>
+    </div>
+  </div>
+
+  <nav class="c-header__primary-nav">
+    <a class="c-header__primary-nav-item" routerLink="/dashboard" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a class="c-header__primary-nav-item" routerLink="/dashboard/bookings" routerLinkActive="active">Bookings</a>
+    <a class="c-header__primary-nav-item" routerLink="/dashboard/clients" routerLinkActive="active">Clients</a>
+  </nav>
+</header>

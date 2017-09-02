@@ -27,6 +27,7 @@ export class AuthenticationEffects {
         password: payload.password
       })
         .map((data: { email: string, first_name: string, last_name: string }) => {
+          this.router.navigate(['/dashboard']);
           return {
             type: AuthenticationActions.SIGNIN,
             payload: {
@@ -53,7 +54,7 @@ export class AuthenticationEffects {
       })
         .map((data: { message: string }) => {
           this.snackBar.open(data.message, 'hide', { duration: 6000 });
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
           return {
             type: AuthenticationActions.RESET_PASSWORD
           }
@@ -76,7 +77,7 @@ export class AuthenticationEffects {
       })
         .map((data: { message: string }) => {
           this.snackBar.open(data.message, 'hide', { duration: 6000 });
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
           return {
             type: AuthenticationActions.RESET_PASSWORD
           }
@@ -105,7 +106,7 @@ export class AuthenticationEffects {
       localStorage.removeItem('client');
       localStorage.removeItem('expiry');
       localStorage.removeItem('uid');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     });
 
   constructor(private actions$: Actions,

@@ -1,0 +1,13 @@
+.c-footer {
+  padding: 1.5em 5em;
+  background-color: #212121;
+  color: #fff;
+}
+
+.c-footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
