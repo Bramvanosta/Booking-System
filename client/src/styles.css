@@ -16,3 +16,14 @@
 body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
+
+button {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  user-select: none;
+}

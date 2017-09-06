@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MdIconModule } from '@angular/material';
+import { MdIconModule, MdMenuModule } from '@angular/material';
 
 import { dashboardRoutes } from './dashboard.routes';
 
@@ -19,6 +19,7 @@ import { ClientsComponent } from './clients/clients.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { HeaderWidgetComponent } from './core/header/widget/widget.component';
+import { SettingsMenuComponent } from './Core/Header/settings-menu/settings-menu.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +30,14 @@ import { HeaderWidgetComponent } from './core/header/widget/widget.component';
     HeaderComponent,
     FooterComponent,
     HeaderWidgetComponent,
+    SettingsMenuComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(dashboardRoutes),
     SharedModule,
     MdIconModule,
+    MdMenuModule
   ],
   providers: [
     AuthenticationGuard,

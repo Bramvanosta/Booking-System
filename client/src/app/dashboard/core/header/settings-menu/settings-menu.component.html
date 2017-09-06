@@ -1,0 +1,10 @@
+<div *ngIf="(campgroundsState | async).currentCampground && (campgroundsState | async).currentCampground.rights">
+  <md-menu #settingsMenu="mdMenu">
+    <button md-menu-item *ngIf="(campgroundsState | async).currentCampground.rights.can_view_rights">Rights</button>
+    <button md-menu-item *ngIf="(campgroundsState | async).currentCampground.rights.can_view_api_keys">API Keys</button>
+  </md-menu>
+
+  <button md-icon-button [mdMenuTriggerFor]="settingsMenu">
+    <md-icon class="c-header__secondary-nav-item">settings</md-icon>
+  </button>
+</div>
