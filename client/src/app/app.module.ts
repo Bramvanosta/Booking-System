@@ -16,6 +16,8 @@ import { environment } from '../environments/environment';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
+import { reset } from "./store/app.meta-reducers";
+
 import { AuthenticationInterceptor } from './shared/authentication.interceptors';
 
 import { AppComponent } from './app.component';
@@ -31,7 +33,7 @@ import { AppComponent } from './app.component';
     AuthenticationModule,
     DashboardModule,
     RouterModule.forRoot([]),
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, {metaReducers: [reset]}),
     EffectsModule.forRoot(effects),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []

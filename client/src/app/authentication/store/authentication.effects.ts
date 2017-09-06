@@ -106,6 +106,7 @@ export class AuthenticationEffects {
       localStorage.removeItem('client');
       localStorage.removeItem('expiry');
       localStorage.removeItem('uid');
+      localStorage.removeItem('current-campground-id');
       this.router.navigate(['/login']);
     });
 

@@ -52,8 +52,6 @@ export function authenticationReducer(state = initialState, action: Authenticati
       };
     case (AuthenticationActions.UPDATE_PASSWORD):
       return { ...initialState };
-    case (AuthenticationActions.LOGOUT):
-      return { ...initialState };
     case (AuthenticationActions.SET_AUTHENTICATION_INFO):
       return {
         ...state,
