@@ -10,7 +10,7 @@ module Api::V1
         render json: @rights
       else
         error_message = I18n.t 'errors.rights.rights.view'
-        render json: {error: error_message}, status: 401
+        render json: {error: error_message}, status: :unauthorized
       end
     end
 
@@ -20,7 +20,7 @@ module Api::V1
         render json: @right
       else
         error_message = I18n.t 'errors.rights.rights.view'
-        render json: {error: error_message}, status: 401
+        render json: {error: error_message}, status: :unauthorized
       end
     end
 
@@ -34,14 +34,14 @@ module Api::V1
         end
       else
         error_message = I18n.t 'errors.rights.rights.edit'
-        render json: {error: error_message}, status: 401
+        render json: {error: error_message}, status: :unauthorized
       end
     end
 
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_rights
-      @rights = Campground.find(params[:campground_id]).rights
+      @rights = current_v1_user.rights.find_by(campground_id: params[:campground_id])
     end
 
     def set_right
@@ -50,8 +50,7 @@ module Api::V1
 
     # Use callbacks to share common setup or constraints between actions.
     def set_access_rights
-      # @access_rights = current_v1_user.rights.where(campground_id: params[:campground_id])
-      @access_rights = User.find(1).rights.find_by(campground_id: params[:campground_id])
+      @access_rights = current_v1_user.rights.find_by(campground_id: params[:campground_id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -25,6 +25,14 @@ export function campgroundsReducer(state = initialState, action: CampgroundsActi
         ...state,
         currentCampground: currentCampground
       };
+    case (CampgroundsActions.SET_RIGHTS):
+      return {
+        ...state,
+        currentCampground: {
+          ...state.currentCampground,
+          rights: action.payload
+        }
+      };
     case (CampgroundsActions.ON_CAMPGROUNDS_ERROR):
       return { ...initialState };
     default:
