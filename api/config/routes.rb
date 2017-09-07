@@ -112,8 +112,9 @@ Rails.application.routes.draw do
           resources :payments
           resources :people
           resources :prices
-          resources :rental_categories
-          resources :rentals
+          resources :rental_categories do
+            resources :rentals
+          end
           resources :seasons
           resources :rights
           resources :users

@@ -67,7 +67,7 @@ module Api::V1
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_rentals
-      @rentals = Campground.find(params[:campground_id]).rentals
+      @rentals = Campground.find(params[:campground_id]).rental_categories.find(params[:rental_category_id]).rentals
     end
 
     # Use callbacks to share common setup or constraints between actions.
