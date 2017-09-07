@@ -111,11 +111,12 @@ Rails.application.routes.draw do
           resources :clients
           resources :payments
           resources :people
-          resources :prices
           resources :rental_categories do
             resources :rentals
           end
-          resources :seasons
+          resources :seasons do
+            resources :prices
+          end
           resources :rights
           resources :users
         end
