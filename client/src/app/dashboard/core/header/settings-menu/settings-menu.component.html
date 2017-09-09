@@ -4,10 +4,14 @@
        *ngIf="(rightsState | async).rights.can_edit_campground">Manage the campground</p>
 
     <a md-menu-item
+       class="c-settings-menu__link"
        routerLink="/dashboard/rentals"
+       routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_edit_campground">Rentals</a>
     <a md-menu-item
+       class="c-settings-menu__link"
        routerLink="/dashboard/prices"
+       routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_edit_campground">Prices</a>
 
     <div class="mdc-list-divider"
@@ -19,13 +23,19 @@
               (rightsState | async).rights.can_view_users">Manage the accesses</p>
 
     <a md-menu-item
+       class="c-settings-menu__link"
        routerLink="/dashboard/rights"
+       routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_view_rights">Rights</a>
     <a md-menu-item
+       class="c-settings-menu__link"
        routerLink="/dashboard/api-keys"
+       routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_view_api_keys">API Keys</a>
     <a md-menu-item
+       class="c-settings-menu__link"
        routerLink="/dashboard/users"
+       routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_view_users">Users</a>
   </md-menu>
 

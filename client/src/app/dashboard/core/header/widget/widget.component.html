@@ -3,7 +3,7 @@
     <div class="c-header-widget__user-info">
       <div class="c-header-widget__user">
         <img class="c-header-widget__user-image" src="assets/images/profile.png" alt="Profile picture">
-        <span>{{(authenticationState | async).user.firstName}} {{(authenticationState | async).user.lastName}}</span>
+        <span>{{(authenticationState | async).user.first_name}} {{(authenticationState | async).user.last_name}}</span>
       </div>
       <a (click)="onLogout()">
         <md-icon class="c-header-widget__logout">power_settings_new</md-icon>
