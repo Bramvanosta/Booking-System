@@ -20,6 +20,11 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { HeaderWidgetComponent } from './core/header/widget/widget.component';
 import { SettingsMenuComponent } from './Core/Header/settings-menu/settings-menu.component';
+import { RentalsComponent } from './rentals/rentals.component';
+import { PricesComponent } from './prices/prices.component';
+import { RightsComponent } from './rights/rights.component';
+import { ApiKeysComponent } from './api-keys/api-keys.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,11 @@ import { SettingsMenuComponent } from './Core/Header/settings-menu/settings-menu
     FooterComponent,
     HeaderWidgetComponent,
     SettingsMenuComponent,
+    RentalsComponent,
+    PricesComponent,
+    RightsComponent,
+    ApiKeysComponent,
+    UsersComponent,
   ],
   imports: [
     CommonModule,

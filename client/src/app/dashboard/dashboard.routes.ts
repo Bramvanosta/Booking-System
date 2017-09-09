@@ -9,6 +9,11 @@ import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { ClientsComponent } from './clients/clients.component';
+import { RentalsComponent } from './rentals/rentals.component';
+import { PricesComponent } from './prices/prices.component';
+import { RightsComponent } from './rights/rights.component';
+import { ApiKeysComponent } from './api-keys/api-keys.component';
+import { UsersComponent } from './users/users.component';
 
 export const dashboardRoutes: Routes = [
   {
@@ -18,7 +23,12 @@ export const dashboardRoutes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'bookings', component: BookingsComponent, canActivate: [BookingsGuard] },
-      { path: 'clients', component: ClientsComponent, canActivate: [ClientsGuard] }
+      { path: 'clients', component: ClientsComponent, canActivate: [ClientsGuard] },
+      { path: 'rentals', component: RentalsComponent },
+      { path: 'prices', component: PricesComponent },
+      { path: 'rights', component: RightsComponent },
+      { path: 'api-keys', component: ApiKeysComponent },
+      { path: 'users', component: UsersComponent },
     ]
   }
 ];
