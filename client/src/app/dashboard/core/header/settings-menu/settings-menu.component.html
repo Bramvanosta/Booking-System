@@ -1,7 +1,23 @@
 <div *ngIf="(campgroundsState | async).currentCampground && (campgroundsState | async).currentCampground.rights">
   <md-menu #settingsMenu="mdMenu">
+    <p class="c-settings-menu__title"
+       *ngIf="(campgroundsState | async).currentCampground.rights.can_edit_campground">Manage the campground</p>
+
+    <button md-menu-item *ngIf="(campgroundsState | async).currentCampground.rights.can_edit_campground">Rentals
+    </button>
+    <button md-menu-item *ngIf="(campgroundsState | async).currentCampground.rights.can_edit_campground">Prices</button>
+
+    <div class="mdc-list-divider"
+         *ngIf="(campgroundsState | async).currentCampground.rights.can_edit_campground"></div>
+
+    <p class="c-settings-menu__title"
+       *ngIf="(campgroundsState | async).currentCampground.rights.can_view_rights ||
+              (campgroundsState | async).currentCampground.rights.can_view_api_keys ||
+              (campgroundsState | async).currentCampground.rights.can_view_users">Manage the accesses</p>
+
     <button md-menu-item *ngIf="(campgroundsState | async).currentCampground.rights.can_view_rights">Rights</button>
     <button md-menu-item *ngIf="(campgroundsState | async).currentCampground.rights.can_view_api_keys">API Keys</button>
+    <button md-menu-item *ngIf="(campgroundsState | async).currentCampground.rights.can_view_users">Users</button>
   </md-menu>
 
   <button md-icon-button [mdMenuTriggerFor]="settingsMenu">

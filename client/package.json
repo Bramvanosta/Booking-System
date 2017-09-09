@@ -25,6 +25,7 @@
     "@angular/router": "^4.3.6",
     "@material/elevation": "^0.1.11",
     "@material/layout-grid": "^0.4.2",
+    "@material/list": "^0.2.18",
     "@material/typography": "^0.3.0",
     "@ngrx/effects": "^4.0.5",
     "@ngrx/router-store": "^4.0.4",

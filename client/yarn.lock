@@ -167,6 +167,10 @@
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.3.1.tgz#229de6927d0590d6d6b20157d778d264ef02229a"
 
+"@material/base@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@material/base/-/base-0.2.5.tgz#d721a8add68bbfa8ed6759c6bbd9107cd272a2b0"
+
 "@material/elevation@^0.1.11":
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.1.11.tgz#195815648697f2fbad20666a4c232dc9b6f1189b"
@@ -176,6 +180,30 @@
 "@material/layout-grid@^0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@material/layout-grid/-/layout-grid-0.4.2.tgz#729e4f50cd38fe1d7ea37717bda8a5ac59547804"
+
+"@material/list@^0.2.18":
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/@material/list/-/list-0.2.18.tgz#2a27a535887f80de526ab805f265c601e05db0b2"
+  dependencies:
+    "@material/ripple" "^0.8.6"
+    "@material/rtl" "^0.1.7"
+    "@material/theme" "^0.3.0"
+    "@material/typography" "^0.3.0"
+
+"@material/ripple@^0.8.6":
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-0.8.6.tgz#039ec22937f78bcfefa330d3533c77852466d8d8"
+  dependencies:
+    "@material/base" "^0.2.5"
+    "@material/theme" "^0.3.0"
+
+"@material/rtl@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.1.7.tgz#b38b771af183bcf34d643f600f17fc433698535a"
+
+"@material/theme@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.3.0.tgz#d0e7622c77aebbd9416e6561c31ff4a8338d1f06"
 
 "@material/typography@^0.3.0":
   version "0.3.0"
@@ -310,10 +338,6 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
 amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
-
-angular2-token@^0.2.0-beta.12:
-  version "0.2.0-beta.12"
-  resolved "https://registry.yarnpkg.com/angular2-token/-/angular2-token-0.2.0-beta.12.tgz#0a9271b081ebf9e41b598ea91c6139759a739b6d"
 
 ansi-escapes@^1.1.0:
   version "1.4.0"
