@@ -1,32 +1,32 @@
-<div *ngIf="(campgroundsState | async).currentCampground && (campgroundsState | async).currentCampground.rights">
+<div *ngIf="(rightsState | async).rights">
   <md-menu #settingsMenu="mdMenu">
     <p class="c-settings-menu__title"
-       *ngIf="(campgroundsState | async).currentCampground.rights.can_edit_campground">Manage the campground</p>
+       *ngIf="(rightsState | async).rights.can_edit_campground">Manage the campground</p>
 
     <a md-menu-item
        routerLink="/dashboard/rentals"
-       *ngIf="(campgroundsState | async).currentCampground.rights.can_edit_campground">Rentals</a>
+       *ngIf="(rightsState | async).rights.can_edit_campground">Rentals</a>
     <a md-menu-item
        routerLink="/dashboard/prices"
-       *ngIf="(campgroundsState | async).currentCampground.rights.can_edit_campground">Prices</a>
+       *ngIf="(rightsState | async).rights.can_edit_campground">Prices</a>
 
     <div class="mdc-list-divider"
-         *ngIf="(campgroundsState | async).currentCampground.rights.can_edit_campground"></div>
+         *ngIf="(rightsState | async).rights.can_edit_campground"></div>
 
     <p class="c-settings-menu__title"
-       *ngIf="(campgroundsState | async).currentCampground.rights.can_view_rights ||
-              (campgroundsState | async).currentCampground.rights.can_view_api_keys ||
-              (campgroundsState | async).currentCampground.rights.can_view_users">Manage the accesses</p>
+       *ngIf="(rightsState | async).rights.can_view_rights ||
+              (rightsState | async).rights.can_view_api_keys ||
+              (rightsState | async).rights.can_view_users">Manage the accesses</p>
 
     <a md-menu-item
        routerLink="/dashboard/rights"
-       *ngIf="(campgroundsState | async).currentCampground.rights.can_view_rights">Rights</a>
+       *ngIf="(rightsState | async).rights.can_view_rights">Rights</a>
     <a md-menu-item
        routerLink="/dashboard/api-keys"
-       *ngIf="(campgroundsState | async).currentCampground.rights.can_view_api_keys">API Keys</a>
+       *ngIf="(rightsState | async).rights.can_view_api_keys">API Keys</a>
     <a md-menu-item
        routerLink="/dashboard/users"
-       *ngIf="(campgroundsState | async).currentCampground.rights.can_view_users">Users</a>
+       *ngIf="(rightsState | async).rights.can_view_users">Users</a>
   </md-menu>
 
   <button md-icon-button [mdMenuTriggerFor]="settingsMenu">

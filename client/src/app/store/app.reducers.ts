@@ -4,17 +4,20 @@ import * as fromAuthentication from '../authentication/store/authentication.redu
 import * as fromCampgrounds from '../dashboard/campgrounds/store/campgrounds.reducers';
 import * as fromBookings from '../dashboard/bookings/store/bookings.reducers';
 import * as fromClients from '../dashboard/clients/store/clients.reducers';
+import * as fromRights from '../dashboard/rights/store/rights.reducers';
 
 export interface AppState {
   authentication: fromAuthentication.State;
   campgrounds: fromCampgrounds.State;
   bookings: fromBookings.State;
   clients: fromClients.State;
+  rights: fromRights.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   authentication: fromAuthentication.authenticationReducer,
   campgrounds: fromCampgrounds.campgroundsReducer,
   bookings: fromBookings.bookingsReducer,
-  clients: fromClients.clientsReducer
+  clients: fromClients.clientsReducer,
+  rights: fromRights.rightsReducer
 };

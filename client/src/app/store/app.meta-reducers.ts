@@ -1,9 +1,9 @@
 import * as AuthenticationActions from '../authentication/store/authentication.actions';
 
-export function reset( reducer ) {
-  return function newReducer( state, action ) {
+export function reset(reducer) {
+  return function newReducer(state, action) {
 
-    if( action.type === AuthenticationActions.LOGOUT ) {
+    if (action.type === AuthenticationActions.LOGOUT) {
       state = undefined;
     }
 
