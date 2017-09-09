@@ -1,9 +1,9 @@
 import * as AuthenticationActions from './authentication.actions';
 
+import { User } from '../user.model';
+
 export interface State {
-  email: string;
-  firstName: string;
-  lastName: string;
+  user: User;
   token: string;
   client: string;
   expiry: string;
@@ -13,9 +13,7 @@ export interface State {
 }
 
 const initialState: State = {
-  email: null,
-  firstName: null,
-  lastName: null,
+  user: null,
   token: null,
   client: null,
   expiry: null,
@@ -34,7 +32,7 @@ export function authenticationReducer(state = initialState, action: Authenticati
     case (AuthenticationActions.SIGNIN):
       return {
         ...state,
-        ...action.payload,
+        user: action.payload,
         authenticated: true,
         loading: false,
       };
