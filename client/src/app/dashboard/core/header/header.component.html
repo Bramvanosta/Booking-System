@@ -9,7 +9,7 @@
   <div class="c-header__content">
     <div class="c-header__content--left">
       <h2 class="c-header__welcome">Welcome back!</h2>
-      <span class="c-header__info">You have 3 new bookings</span>
+      <span class="c-header__info">You are managing {{(campgroundsState | async).currentCampground.name}}</span>
     </div>
     <div class="c-header__content--right">
       <app-header-widget></app-header-widget>
