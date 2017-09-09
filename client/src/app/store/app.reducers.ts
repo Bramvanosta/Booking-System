@@ -6,6 +6,7 @@ import * as fromBookings from '../dashboard/bookings/store/bookings.reducers';
 import * as fromClients from '../dashboard/clients/store/clients.reducers';
 import * as fromRights from '../dashboard/rights/store/rights.reducers';
 import * as fromRentals from '../dashboard/rentals/store/rentals.reducers';
+import * as fromprices from '../dashboard/prices/store/prices.reducers';
 
 export interface AppState {
   authentication: fromAuthentication.State;
@@ -14,6 +15,7 @@ export interface AppState {
   clients: fromClients.State;
   rights: fromRights.State;
   rentals: fromRentals.State;
+  prices: fromprices.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -22,5 +24,6 @@ export const reducers: ActionReducerMap<AppState> = {
   bookings: fromBookings.bookingsReducer,
   clients: fromClients.clientsReducer,
   rights: fromRights.rightsReducer,
-  rentals: fromRentals.rentalsReducer
+  rentals: fromRentals.rentalsReducer,
+  prices: fromprices.pricesReducer
 };

@@ -12,6 +12,7 @@ import { DashboardGuard } from './dashboard.guard';
 import { BookingsGuard } from './bookings/bookings.guard';
 import { ClientsGuard } from './clients/clients.guard';
 import { RentalsGuard } from './rentals/rentals.guard';
+import { PricesGuard } from './prices/prices.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -55,7 +56,8 @@ import { UsersComponent } from './users/users.component';
     DashboardGuard,
     BookingsGuard,
     ClientsGuard,
-    RentalsGuard
+    RentalsGuard,
+    PricesGuard
   ]
 })
 export class DashboardModule {

@@ -4,6 +4,7 @@ import { BookingsEffects } from '../dashboard/bookings/store/bookings.effects';
 import { ClientsEffects } from '../dashboard/clients/store/clients.effects';
 import { RightsEffects } from '../dashboard/rights/store/rights.effects';
 import { RentalsEffects } from '../dashboard/rentals/store/rentals.effects';
+import { PricesEffects } from '../dashboard/prices/store/prices.effects';
 
 export const effects = [
   AuthenticationEffects,
@@ -11,5 +12,6 @@ export const effects = [
   BookingsEffects,
   ClientsEffects,
   RightsEffects,
-  RentalsEffects
+  RentalsEffects,
+  PricesEffects
 ];

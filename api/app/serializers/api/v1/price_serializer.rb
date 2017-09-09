@@ -4,8 +4,5 @@ module Api::V1
                :name,
                :price_cents,
                :price_currency
-    
-    has_one :season
-    has_one :rental_category
   end
 end

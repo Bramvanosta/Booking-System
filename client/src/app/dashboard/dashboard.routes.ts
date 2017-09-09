@@ -5,6 +5,7 @@ import { DashboardGuard } from './dashboard.guard';
 import { BookingsGuard } from './bookings/bookings.guard';
 import { ClientsGuard } from './clients/clients.guard';
 import { RentalsGuard } from './rentals/rentals.guard';
+import { PricesGuard } from './prices/prices.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -26,7 +27,7 @@ export const dashboardRoutes: Routes = [
       { path: 'bookings', component: BookingsComponent, canActivate: [BookingsGuard] },
       { path: 'clients', component: ClientsComponent, canActivate: [ClientsGuard] },
       { path: 'rentals', component: RentalsComponent, canActivate: [RentalsGuard] },
-      { path: 'prices', component: PricesComponent },
+      { path: 'prices', component: PricesComponent, canActivate: [PricesGuard] },
       { path: 'rights', component: RightsComponent },
       { path: 'api-keys', component: ApiKeysComponent },
       { path: 'users', component: UsersComponent },

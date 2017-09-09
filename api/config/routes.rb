@@ -113,10 +113,11 @@ Rails.application.routes.draw do
           resources :people
           resources :rental_categories do
             resources :rentals
+            resources :seasons, only: [] do
+              resources :prices
+            end
           end
-          resources :seasons do
-            resources :prices
-          end
+          resources :seasons
           resources :rights
           resources :users
         end

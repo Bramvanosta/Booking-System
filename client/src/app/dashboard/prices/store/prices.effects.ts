@@ -9,62 +9,63 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/take';
 
-import * as RentalsActions from './rentals.actions';
+import * as PricesActions from './prices.actions';
 import * as fromApp from '../../../store/app.reducers';
 import * as fromCampgrounds from '../../campgrounds/store/campgrounds.reducers';
 
-import { RentalCategory } from '../rental-category.model';
-import { Rental } from '../rental.model';
+import { Season } from '../season.model';
+import { Price } from '../price.model';
 
 @Injectable()
-export class RentalsEffects {
+export class PricesEffects {
 
-  @Effect() fetchRentalCategories: Observable<Action> = this.actions$
-    .ofType(RentalsActions.FETCH_RENTAL_CATEGORIES)
+  @Effect() fetchSeasons: Observable<Action> = this.actions$
+    .ofType(PricesActions.FETCH_SEASONS)
     .mergeMap(() => {
       return this.store.select('campgrounds')
         .take(1)
         .mergeMap((campgroundsState: fromCampgrounds.State) => {
-          return this.httpClient.get<RentalCategory[]>(`campgrounds/${campgroundsState.currentCampground.id}/rental_categories`)
-            .map((rentalCategories: RentalCategory[]) => {
+          return this.httpClient.get<Season[]>(`campgrounds/${campgroundsState.currentCampground.id}/seasons`)
+            .map((seasons: Season[]) => {
               return {
-                type: RentalsActions.SET_RENTAL_CATEGORIES,
-                payload: rentalCategories
+                type: PricesActions.SET_SEASONS,
+                payload: seasons
               }
             })
             .catch((errorResponse: HttpErrorResponse) => {
               const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
-              return Observable.of(new RentalsActions.OnRentalError(errorMessage));
+              return Observable.of(new PricesActions.OnPriceError(errorMessage));
             })
         })
     });
 
-  @Effect() fetchRentals: Observable<Action> = this.actions$
-    .ofType(RentalsActions.FETCH_RENTALS)
+  @Effect() fetchPrices: Observable<Action> = this.actions$
+    .ofType(PricesActions.FETCH_PRICES)
     .map(toPayload)
-    .mergeMap((payload: number) => {
+    .mergeMap((payload: { seasonId: number, rentalCategoryId: number }) => {
       return this.store.select('campgrounds')
         .take(1)
         .mergeMap((campgroundsState: fromCampgrounds.State) => {
-          return this.httpClient.get<Rental[]>(`campgrounds/${campgroundsState.currentCampground.id}/rental_categories/${payload}/rentals`)
-            .map((rentals: Rental[]) => {
+          return this.httpClient.get<Price[]>(`campgrounds/${campgroundsState.currentCampground.id}/rental_categories/${payload.rentalCategoryId}/seasons/${payload.seasonId}/prices`)
+            .map((prices: Price[]) => {
               return {
-                type: RentalsActions.SET_RENTALS,
+                type: PricesActions.SET_PRICES,
                 payload: {
-                  id: payload,
-                  rentals
+                  seasonId: payload.seasonId,
+                  rentalCategoryId: payload.rentalCategoryId,
+                  prices
                 }
               }
             })
             .catch((errorResponse: HttpErrorResponse) => {
               const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
-              return Observable.of(new RentalsActions.OnRentalError(errorMessage));
+              return Observable.of(new PricesActions.OnPriceError(errorMessage));
             })
         })
     });
 
-  @Effect({ dispatch: false }) onRentalError = this.actions$
-    .ofType(RentalsActions.ON_RENTAL_ERROR)
+  @Effect({ dispatch: false }) onPriceError = this.actions$
+    .ofType(PricesActions.ON_PRICE_ERROR)
     .map(toPayload)
     .do((payload: string) => {
       this.snackBar.open(payload, 'hide', { duration: 6000 });
