@@ -16,7 +16,7 @@ import { Campground } from '../campground.model';
 @Injectable()
 export class CampgroundsEffects {
 
-  @Effect() campgroundsFetchCampgrounds: Observable<Action> = this.actions$
+  @Effect() fetchCampgrounds: Observable<Action> = this.actions$
     .ofType(CampgroundsActions.FETCH_CAMPGROUNDS)
     .mergeMap(() => {
       return this.httpClient.get<Campground[]>('campgrounds')
@@ -35,7 +35,7 @@ export class CampgroundsEffects {
         })
     });
 
-  @Effect() campgroundsSetCampgrounds: Observable<Action> = this.actions$
+  @Effect() setCampgrounds: Observable<Action> = this.actions$
     .ofType(CampgroundsActions.SET_CAMPGROUNDS)
     .map(toPayload)
     .map((payload: Campground[]) => {
@@ -49,7 +49,7 @@ export class CampgroundsEffects {
       };
     });
 
-  @Effect() campgroundsSetCurrentCampground: Observable<Action> = this.actions$
+  @Effect() setCurrentCampground: Observable<Action> = this.actions$
     .ofType(CampgroundsActions.SET_CURRENT_CAMPGROUND)
     .map(toPayload)
     .map((payload: number) => {
@@ -59,7 +59,7 @@ export class CampgroundsEffects {
       };
     });
 
-  @Effect({ dispatch: false }) campgroundsOnError = this.actions$
+  @Effect({ dispatch: false }) onCampgroundsError = this.actions$
     .ofType(CampgroundsActions.ON_CAMPGROUNDS_ERROR)
     .map(toPayload)
     .do((payload: string) => {

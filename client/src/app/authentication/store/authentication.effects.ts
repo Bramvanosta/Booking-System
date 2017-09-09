@@ -20,7 +20,7 @@ import * as AuthenticationActions from './authentication.actions';
 @Injectable()
 export class AuthenticationEffects {
 
-  @Effect() authenticationSignin: Observable<Action | any> = this.actions$
+  @Effect() signin: Observable<Action | any> = this.actions$
     .ofType(AuthenticationActions.TRY_SIGNIN)
     .map(toPayload)
     .mergeMap((payload: { email: string, password: string }) => {
@@ -46,7 +46,7 @@ export class AuthenticationEffects {
         })
     });
 
-  @Effect() authenticationResetPassword: Observable<Action | any> = this.actions$
+  @Effect() resetPassword: Observable<Action | any> = this.actions$
     .ofType(AuthenticationActions.TRY_RESET_PASSWORD)
     .map(toPayload)
     .mergeMap((payload: string) => {
@@ -67,7 +67,7 @@ export class AuthenticationEffects {
         })
     });
 
-  @Effect() authenticationUpdatePassword: Observable<Action | any> = this.actions$
+  @Effect() updatePassword: Observable<Action | any> = this.actions$
     .ofType(AuthenticationActions.TRY_UPDATE_PASSWORD)
     .map(toPayload)
     .mergeMap((payload: { password: string, passwordConfirmation: string, resetPasswordToken: string }) => {
@@ -89,7 +89,7 @@ export class AuthenticationEffects {
         })
     });
 
-  @Effect({ dispatch: false }) authenticationSetAuthenticationInfo = this.actions$
+  @Effect({ dispatch: false }) setAuthenticationInfo = this.actions$
     .ofType(AuthenticationActions.SET_AUTHENTICATION_INFO)
     .map(toPayload)
     .do((payload: { token: string, client: string, expiry: string, uid: string }) => {
@@ -99,7 +99,7 @@ export class AuthenticationEffects {
       localStorage.setItem('uid', payload.uid);
     });
 
-  @Effect({ dispatch: false }) authenticationLogout = this.actions$
+  @Effect({ dispatch: false }) logout = this.actions$
     .ofType(AuthenticationActions.LOGOUT)
     .do(() => {
       localStorage.removeItem('access-token');
@@ -132,7 +132,7 @@ export class AuthenticationEffects {
         })
     });
 
-  @Effect({ dispatch: false }) authentificationOnError = this.actions$
+  @Effect({ dispatch: false }) onAuthentificationError = this.actions$
     .ofType(AuthenticationActions.ON_AUTHENTICATION_ERROR)
     .map(toPayload)
     .do((payload: string) => {

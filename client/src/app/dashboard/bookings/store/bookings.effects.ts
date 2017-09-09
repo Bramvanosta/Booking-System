@@ -18,7 +18,7 @@ import { Booking } from '../booking.model';
 @Injectable()
 export class BookingsEffects {
 
-  @Effect() bookingsFetchBookings: Observable<Action> = this.actions$
+  @Effect() fetchBookings: Observable<Action> = this.actions$
     .ofType(BookingsActions.FETCH_BOOKINGS)
     .mergeMap(() => {
       return this.store.select('campgrounds')
@@ -47,7 +47,7 @@ export class BookingsEffects {
         })
     });
 
-  @Effect({ dispatch: false }) bookingsOnError = this.actions$
+  @Effect({ dispatch: false }) onBookingsError = this.actions$
     .ofType(BookingsActions.ON_BOOKINGS_ERROR)
     .map(toPayload)
     .do((payload: string) => {

@@ -18,7 +18,7 @@ import { Client } from '../client.model';
 @Injectable()
 export class ClientsEffects {
 
-  @Effect() clientsFetchClients: Observable<Action> = this.actions$
+  @Effect() fetchClients: Observable<Action> = this.actions$
     .ofType(ClientsActions.FETCH_CLIENTS)
     .mergeMap(() => {
       return this.store.select('campgrounds')
@@ -38,7 +38,7 @@ export class ClientsEffects {
         })
     });
 
-  @Effect({ dispatch: false }) clientsOnError = this.actions$
+  @Effect({ dispatch: false }) onClientsError = this.actions$
     .ofType(ClientsActions.ON_CLIENTS_ERROR)
     .map(toPayload)
     .do((payload: string) => {
