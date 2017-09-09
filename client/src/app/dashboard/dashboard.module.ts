@@ -23,7 +23,7 @@ import { ClientsComponent } from './clients/clients.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { HeaderWidgetComponent } from './core/header/widget/widget.component';
-import { SettingsMenuComponent } from './Core/Header/settings-menu/settings-menu.component';
+import { SettingsMenuComponent } from './core/header/settings-menu/settings-menu.component';
 import { RentalsComponent } from './rentals/rentals.component';
 import { PricesComponent } from './prices/prices.component';
 import { RightsComponent } from './rights/rights.component';
