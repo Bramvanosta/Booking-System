@@ -4,6 +4,7 @@ import { AuthenticationGuard } from '../shared/authentication.guard';
 import { DashboardGuard } from './dashboard.guard';
 import { BookingsGuard } from './bookings/bookings.guard';
 import { ClientsGuard } from './clients/clients.guard';
+import { RentalsGuard } from './rentals/rentals.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -24,7 +25,7 @@ export const dashboardRoutes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'bookings', component: BookingsComponent, canActivate: [BookingsGuard] },
       { path: 'clients', component: ClientsComponent, canActivate: [ClientsGuard] },
-      { path: 'rentals', component: RentalsComponent },
+      { path: 'rentals', component: RentalsComponent, canActivate: [RentalsGuard] },
       { path: 'prices', component: PricesComponent },
       { path: 'rights', component: RightsComponent },
       { path: 'api-keys', component: ApiKeysComponent },

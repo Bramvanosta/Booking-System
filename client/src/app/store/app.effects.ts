@@ -3,11 +3,13 @@ import { CampgroundsEffects } from '../dashboard/campgrounds/store/campgrounds.e
 import { BookingsEffects } from '../dashboard/bookings/store/bookings.effects';
 import { ClientsEffects } from '../dashboard/clients/store/clients.effects';
 import { RightsEffects } from '../dashboard/rights/store/rights.effects';
+import { RentalsEffects } from '../dashboard/rentals/store/rentals.effects';
 
 export const effects = [
   AuthenticationEffects,
   CampgroundsEffects,
   BookingsEffects,
   ClientsEffects,
-  RightsEffects
+  RightsEffects,
+  RentalsEffects
 ];
