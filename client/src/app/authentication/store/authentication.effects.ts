@@ -16,6 +16,7 @@ import 'rxjs/add/observable/empty';
 
 import * as fromApp from '../../store/app.reducers';
 import * as AuthenticationActions from './authentication.actions';
+import { User } from '../user.model';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -29,14 +30,15 @@ export class AuthenticationEffects {
         password: payload.password
       })
         .map((json: { data }) => json.data)
-        .map((data: { email: string, first_name: string, last_name: string }) => {
+        .map((user: User) => {
           this.router.navigate(['/dashboard']);
           return {
             type: AuthenticationActions.SIGNIN,
             payload: {
-              email: data.email,
-              firstName: data.first_name,
-              lastName: data.last_name
+              id: user.id,
+              email: user.email,
+              first_name: user.first_name,
+              last_name: user.last_name
             }
           }
         })
@@ -115,14 +117,15 @@ export class AuthenticationEffects {
     .mergeMap(() => {
       return this.httpClient.get('auth/validate_token')
         .map((json: { data }) => json.data)
-        .map((data: { email: string, first_name: string, last_name: string }) => {
+        .map((user: User) => {
           this.router.navigate(['/dashboard']);
           return {
             type: AuthenticationActions.SIGNIN,
             payload: {
-              email: data.email,
-              firstName: data.first_name,
-              lastName: data.last_name
+              id: user.id,
+              email: user.email,
+              first_name: user.first_name,
+              last_name: user.last_name
             }
           }
         })

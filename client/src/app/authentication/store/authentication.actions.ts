@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { User } from '../user.model';
+
 export const TRY_SIGNIN = 'TRY_SIGNIN';
 export const SIGNIN = 'SIGNIN';
 export const TRY_RESET_PASSWORD = 'TRY_RESET_PASSWORD';
@@ -21,7 +23,7 @@ export class TrySignin implements Action {
 export class Signin implements Action {
   readonly type = SIGNIN;
 
-  constructor(public payload: { email: string, firstName: string, lastName: string }) {
+  constructor(public payload: User) {
   }
 }
 
