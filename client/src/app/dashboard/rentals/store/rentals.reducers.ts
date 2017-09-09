@@ -1,13 +1,18 @@
 import { RentalCategory } from '../rental-category.model';
 
 import * as RentalsActions from './rentals.actions';
+import { Rental } from '../rental.model';
 
 export interface State {
   rentalCategories: RentalCategory[]
+  rentals: {
+    [rentalCategoryId: number]: Rental[]
+  }
 }
 
 const initialState: State = {
-  rentalCategories: []
+  rentalCategories: [],
+  rentals: {}
 };
 
 export function rentalsReducer(state = initialState, action: RentalsActions.RentalsActions) {
@@ -18,15 +23,12 @@ export function rentalsReducer(state = initialState, action: RentalsActions.Rent
         rentalCategories: action.payload
       };
     case (RentalsActions.SET_RENTALS):
-      const newRentalCategories = state.rentalCategories.map((rentalCategory) => (
-        rentalCategory.id === action.payload.id ? {
-          ...rentalCategory,
-          rentals: action.payload.rentals
-        } : rentalCategory
-      ));
       return {
         ...state,
-        rentalCategories: newRentalCategories
+        rentals: {
+          ...state.rentals,
+          [action.payload.id]: action.payload.rentals
+        }
       };
     case (RentalsActions.ON_RENTAL_ERROR):
       return { ...initialState };

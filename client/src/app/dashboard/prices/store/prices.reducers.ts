@@ -6,8 +6,8 @@ import { Price } from '../price.model';
 export interface State {
   seasons: Season[],
   prices: {
-    [x: number]: {
-      [x: number]: Price[]
+    [seasonId: number]: {
+      [rentalCategoryId: number]: Price[]
     }
   }
 }
