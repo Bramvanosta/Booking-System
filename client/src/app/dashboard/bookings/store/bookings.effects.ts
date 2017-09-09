@@ -26,18 +26,9 @@ export class BookingsEffects {
         .mergeMap((campgroundsState: fromCampgrounds.State) => {
           return this.httpClient.get<Booking[]>(`campgrounds/${campgroundsState.currentCampground.id}/bookings`)
             .map((bookings: Booking[]) => {
-              const formattedBookings = bookings.map((booking) => {
-                return {
-                  id: booking.id,
-                  status: booking.status,
-                  arrival_date: booking.arrival_date,
-                  departure_date: booking.departure_date,
-                  client: booking.client
-                }
-              });
               return {
                 type: BookingsActions.SET_BOOKINGS,
-                payload: formattedBookings
+                payload: bookings
               }
             })
             .catch((errorResponse: HttpErrorResponse) => {
