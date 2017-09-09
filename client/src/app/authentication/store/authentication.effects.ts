@@ -16,7 +16,7 @@ import 'rxjs/add/observable/empty';
 
 import * as fromApp from '../../store/app.reducers';
 import * as AuthenticationActions from './authentication.actions';
-import { User } from '../user.model';
+import { User } from '../../dashboard/users/user.model';
 
 @Injectable()
 export class AuthenticationEffects {

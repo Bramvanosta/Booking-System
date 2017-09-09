@@ -1,6 +1,6 @@
 import * as AuthenticationActions from './authentication.actions';
 
-import { User } from '../user.model';
+import { User } from '../../dashboard/users/user.model';
 
 export interface State {
   user: User;

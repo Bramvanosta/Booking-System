@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { User } from '../user.model';
+import { User } from '../../dashboard/users/user.model';
 
 export const TRY_SIGNIN = 'TRY_SIGNIN';
 export const SIGNIN = 'SIGNIN';

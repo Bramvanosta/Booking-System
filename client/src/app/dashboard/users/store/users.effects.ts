@@ -9,37 +9,37 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/take';
 
-import * as ApiKeysActions from './api-key.actions';
+import * as UsersActions from './users.actions';
 import * as fromApp from '../../../store/app.reducers';
 import * as fromCampgrounds from '../../campgrounds/store/campgrounds.reducers';
 
-import { ApiKey } from '../api-key.model';
+import { User } from '../user.model';
 
 @Injectable()
-export class ApiKeysEffects {
+export class UsersEffects {
 
-  @Effect() fetchApiKeys: Observable<Action> = this.actions$
-    .ofType(ApiKeysActions.FETCH_API_KEYS)
+  @Effect() fetchUsers: Observable<Action> = this.actions$
+    .ofType(UsersActions.FETCH_USERS)
     .mergeMap(() => {
       return this.store.select('campgrounds')
         .take(1)
         .mergeMap((campgroundsState: fromCampgrounds.State) => {
-          return this.httpClient.get<ApiKey[]>(`campgrounds/${campgroundsState.currentCampground.id}/api_keys`)
-            .map((apiKeys: ApiKey[]) => {
+          return this.httpClient.get<User[]>(`campgrounds/${campgroundsState.currentCampground.id}/users`)
+            .map((users: User[]) => {
               return {
-                type: ApiKeysActions.SET_API_KEYS,
-                payload: apiKeys
+                type: UsersActions.SET_USERS,
+                payload: users
               }
             })
             .catch((errorResponse: HttpErrorResponse) => {
               const errorMessage = errorResponse.error ? errorResponse.error.errors[0] : '';
-              return Observable.of(new ApiKeysActions.OnApiKeysError(errorMessage));
+              return Observable.of(new UsersActions.OnUsersError(errorMessage));
             })
         })
     });
 
-  @Effect({ dispatch: false }) onApiKeysError = this.actions$
-    .ofType(ApiKeysActions.ON_API_KEYS_ERROR)
+  @Effect({ dispatch: false }) onUsersError = this.actions$
+    .ofType(UsersActions.ON_USERS_ERROR)
     .map(toPayload)
     .do((payload: string) => {
       this.snackBar.open(payload, 'hide', { duration: 6000 });

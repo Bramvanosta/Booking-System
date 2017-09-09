@@ -14,6 +14,7 @@ import { ClientsGuard } from './clients/clients.guard';
 import { RentalsGuard } from './rentals/rentals.guard';
 import { PricesGuard } from './prices/prices.guard';
 import { ApiKeysGuard } from './api-keys/api-key.guard';
+import { UsersGuard } from './users/users.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -59,7 +60,8 @@ import { UsersComponent } from './users/users.component';
     ClientsGuard,
     RentalsGuard,
     PricesGuard,
-    ApiKeysGuard
+    ApiKeysGuard,
+    UsersGuard
   ]
 })
 export class DashboardModule {
