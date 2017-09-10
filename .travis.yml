@@ -24,13 +24,11 @@ before_install:
 
 before_script:
   - cd client
-  - npm install -g @angular/cli
-  - npm install -g karma
   - npm install
-  - ng build
+  - npm run build:staging
 
 script:
-  - ng test
+  - npm run test
 
 before_deploy:
 - cd ..
