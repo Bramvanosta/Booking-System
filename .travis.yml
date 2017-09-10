@@ -29,6 +29,9 @@ before_script:
   - npm install
   - ng build
 
+script:
+  - ng test
+
 before_deploy:
 - cd ..
 - openssl aes-256-cbc -K $encrypted_8091f3ac13c9_key -iv $encrypted_8091f3ac13c9_iv -in deploy_rsa.enc -out deploy_rsa -d
