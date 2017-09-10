@@ -4,10 +4,10 @@
 cd /var/www/booking-system/
 
 echo "### Print dependency versions ###"
-node -v
-npm -v
-ruby -v
-rails -v
+echo "node: `node -v`"
+echo "npm: `npm -v`"
+echo "ruby: `ruby -v`"
+echo "rails: `rails -v`"
 
 # Get the latest version via git
 echo "### Getting the latest version via git ###"
