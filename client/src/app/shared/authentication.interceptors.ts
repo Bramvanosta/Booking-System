@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpErrorResponse,
   HttpEvent,
@@ -8,12 +8,14 @@ import {
   HttpResponse
 } from '@angular/common/http';
 
-import { Store } from '@ngrx/store';
+import {Store} from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/mergeMap';
+
+import {environment} from '../../environments/environment';
 
 import * as fromApp from '../store/app.reducers';
 import * as fromAuthentication from '../authentication/store/authentication.reducers';
@@ -21,6 +23,8 @@ import * as AuthenticationActions from '../authentication/store/authentication.a
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
+  apiUrl = environment.environmentName === 'development' ? 'http://api.booking-system.dev/v1/' : 'https://api.booking-system.bramvanosta.com/v1/';
+
   constructor(private store: Store<fromApp.AppState>) {
   }
 
@@ -41,7 +45,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
             url: 'http://api.booking-system.dev/v1/' + request.url
           });
         } else {
-          copiedRequest = request.clone({ url: 'http://api.booking-system.dev/v1/' + request.url });
+          copiedRequest = request.clone({url: this.apiUrl + request.url});
         }
         return next.handle(copiedRequest)
           .do((event: HttpEvent<any>) => {
@@ -51,7 +55,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
               const expiry = event.headers.get('expiry');
               const uid = event.headers.get('uid');
               if (token && client && expiry && uid) {
-                this.store.dispatch(new AuthenticationActions.SetAuthenticationInfo({ token, client, expiry, uid }));
+                this.store.dispatch(new AuthenticationActions.SetAuthenticationInfo({token, client, expiry, uid}));
               }
             }
           }, (error) => {

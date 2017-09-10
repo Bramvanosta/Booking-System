@@ -17,6 +17,14 @@ test:
   password: password
   host: bs_api_db
 
+staging:
+  <<: *default
+  database: booking-system_staging
+  username: bookingsystem
+  password: bookingsystem
+  host: localhost
+  port: 5432
+
 production:
   <<: *default
   database: app_production
