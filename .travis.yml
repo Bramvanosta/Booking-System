@@ -1,9 +1,11 @@
-sudo: required
-dist: trusty
-language: node_js
+language: php
 
-node_js:
-  - '6.9'
+php:
+- 7.0
+
+notifications:
+  email: false
+  slack: bramvanosta:EzBQl2zZ3yXmFo5sVNBAP40H
 
 addons:
 apt:
@@ -13,21 +15,18 @@ apt:
     - google-chrome-stable
     - google-chrome-beta
 
-notifications:
-  email: false
-  slack: bramvanosta:EzBQl2zZ3yXmFo5sVNBAP40H
-
-before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
 before_script:
-  - cd client
-  - npm install
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- cd client
+- . $HOME/.nvm/nvm.sh
+- nvm install node
+- nvm use node
+- npm install
 
 script:
-  - npm run test
+- npm run test
 
 before_deploy:
 - cd ..
@@ -38,7 +37,7 @@ before_deploy:
 
 deploy:
 - provider: script
-  script: "./scripts/deploy.sh"
+  script: ./scripts/deploy.sh
   skip_cleanup: true
   on:
     branch: master
