@@ -3,6 +3,12 @@
 # Go to the installation folder
 cd /var/www/booking-system/
 
+echo "### Print dependency versions ###"
+node -v
+npm -v
+ruby -v
+rails -v
+
 # Get the latest version via git
 echo "### Getting the latest version via git ###"
 git fetch origin
@@ -14,7 +20,7 @@ cd client
 yarn
 
 # Build the staging environment
-echo "### Building the Staging environment for Vue.js ###"
+echo "### Building the Staging environment for Angular ###"
 npm run build:staging
 
 # Install Back-end dependencies for Rails
@@ -32,7 +38,7 @@ echo "### Populating this Rails database ###"
 RAILS_ENV=staging rails db:populate
 
 # Activate all the created users
-echo "### Activiting the created users ###"
+echo "### Activating the created users ###"
 echo 'User.find(1).confirm' | rails console
 echo 'User.find(2).confirm' | rails console
 echo 'User.find(3).confirm' | rails console

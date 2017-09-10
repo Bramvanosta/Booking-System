@@ -25,7 +25,6 @@ before_install:
 before_script:
   - cd client
   - npm install
-  - npm run build:staging
 
 script:
   - npm run test
