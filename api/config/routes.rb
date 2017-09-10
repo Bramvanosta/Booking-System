@@ -100,29 +100,27 @@
 #
 
 Rails.application.routes.draw do
-  constraints subdomain: 'api' do
-    scope module: 'api' do
-      namespace :v1 do
-        mount_devise_token_auth_for 'User', at: 'auth'
+  scope module: 'api' do
+    namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth'
 
-        resources :campgrounds do
-          resources :api_keys
-          resources :bookings
-          resources :clients
-          resources :payments
-          resources :people
-          resources :rental_categories do
-            resources :rentals
-            resources :seasons, only: [] do
-              resources :prices
-            end
+      resources :campgrounds do
+        resources :api_keys
+        resources :bookings
+        resources :clients
+        resources :payments
+        resources :people
+        resources :rental_categories do
+          resources :rentals
+          resources :seasons, only: [] do
+            resources :prices
           end
-          resources :seasons
-          resources :rights
-          resources :users
         end
-
+        resources :seasons
+        resources :rights
+        resources :users
       end
+
     end
   end
 end

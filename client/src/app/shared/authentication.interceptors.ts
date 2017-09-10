@@ -42,7 +42,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
               'expiry': authenticationState.expiry,
               'token-type': 'Bearer'
             },
-            url: 'http://api.booking-system.dev/v1/' + request.url
+            url: this.apiUrl + request.url
           });
         } else {
           copiedRequest = request.clone({url: this.apiUrl + request.url});
