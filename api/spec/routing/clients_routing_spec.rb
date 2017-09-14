@@ -1,32 +1,32 @@
 require "rails_helper"
 
-RSpec.describe BuyersController, type: :routing do
+RSpec.describe Api::V1::ClientsController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/buyers").to route_to("buyers#index")
+      expect(:get => "v1/campgrounds/1/clients").to route_to("api/v1/clients#index", :campground_id => "1")
     end
 
 
     it "routes to #show" do
-      expect(:get => "/buyers/1").to route_to("buyers#show", :id => "1")
+      expect(:get => "v1/campgrounds/1/clients/1").to route_to("api/v1/clients#show", :campground_id => "1", :id => "1")
     end
 
 
     it "routes to #create" do
-      expect(:post => "/buyers").to route_to("buyers#create")
+      expect(:post => "v1/campgrounds/1/clients").to route_to("api/v1/clients#create", :campground_id => "1")
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/buyers/1").to route_to("buyers#update", :id => "1")
+      expect(:put => "v1/campgrounds/1/clients/1").to route_to("api/v1/clients#update", :campground_id => "1", :id => "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/buyers/1").to route_to("buyers#update", :id => "1")
+      expect(:patch => "v1/campgrounds/1/clients/1").to route_to("api/v1/clients#update", :campground_id => "1", :id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/buyers/1").to route_to("buyers#destroy", :id => "1")
+      expect(:delete => "v1/campgrounds/1/clients/1").to route_to("api/v1/clients#destroy", :campground_id => "1", :id => "1")
     end
 
   end

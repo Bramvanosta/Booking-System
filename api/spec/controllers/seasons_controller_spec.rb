@@ -23,7 +23,7 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe SeasonsController, type: :controller do
+RSpec.describe Api::V1::SeasonsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Season. As you add validations to Season, be sure to
@@ -52,7 +52,7 @@ RSpec.describe SeasonsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       season = Season.create! valid_attributes
-      get :show, params: {id: season.to_param}, session: valid_session
+      get :show, params: { id: season.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
@@ -61,13 +61,13 @@ RSpec.describe SeasonsController, type: :controller do
     context "with valid params" do
       it "creates a new Season" do
         expect {
-          post :create, params: {season: valid_attributes}, session: valid_session
+          post :create, params: { season: valid_attributes }, session: valid_session
         }.to change(Season, :count).by(1)
       end
 
       it "renders a JSON response with the new season" do
 
-        post :create, params: {season: valid_attributes}, session: valid_session
+        post :create, params: { season: valid_attributes }, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
         expect(response.location).to eq(season_url(Season.last))
@@ -77,7 +77,7 @@ RSpec.describe SeasonsController, type: :controller do
     context "with invalid params" do
       it "renders a JSON response with errors for the new season" do
 
-        post :create, params: {season: invalid_attributes}, session: valid_session
+        post :create, params: { season: invalid_attributes }, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -92,7 +92,7 @@ RSpec.describe SeasonsController, type: :controller do
 
       it "updates the requested season" do
         season = Season.create! valid_attributes
-        put :update, params: {id: season.to_param, season: new_attributes}, session: valid_session
+        put :update, params: { id: season.to_param, season: new_attributes }, session: valid_session
         season.reload
         skip("Add assertions for updated state")
       end
@@ -100,7 +100,7 @@ RSpec.describe SeasonsController, type: :controller do
       it "renders a JSON response with the season" do
         season = Season.create! valid_attributes
 
-        put :update, params: {id: season.to_param, season: valid_attributes}, session: valid_session
+        put :update, params: { id: season.to_param, season: valid_attributes }, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
@@ -110,7 +110,7 @@ RSpec.describe SeasonsController, type: :controller do
       it "renders a JSON response with errors for the season" do
         season = Season.create! valid_attributes
 
-        put :update, params: {id: season.to_param, season: invalid_attributes}, session: valid_session
+        put :update, params: { id: season.to_param, season: invalid_attributes }, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -121,7 +121,7 @@ RSpec.describe SeasonsController, type: :controller do
     it "destroys the requested season" do
       season = Season.create! valid_attributes
       expect {
-        delete :destroy, params: {id: season.to_param}, session: valid_session
+        delete :destroy, params: { id: season.to_param }, session: valid_session
       }.to change(Season, :count).by(-1)
     end
   end

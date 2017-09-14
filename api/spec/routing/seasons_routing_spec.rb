@@ -1,32 +1,32 @@
 require "rails_helper"
 
-RSpec.describe SeasonsController, type: :routing do
+RSpec.describe Api::V1::SeasonsController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/seasons").to route_to("seasons#index")
+      expect(:get => "v1/campgrounds/1/seasons").to route_to("api/v1/seasons#index", :campground_id => "1")
     end
 
 
     it "routes to #show" do
-      expect(:get => "/seasons/1").to route_to("seasons#show", :id => "1")
+      expect(:get => "v1/campgrounds/1/seasons/1").to route_to("api/v1/seasons#show", :campground_id => "1", :id => "1")
     end
 
 
     it "routes to #create" do
-      expect(:post => "/seasons").to route_to("seasons#create")
+      expect(:post => "v1/campgrounds/1/seasons").to route_to("api/v1/seasons#create", :campground_id => "1")
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/seasons/1").to route_to("seasons#update", :id => "1")
+      expect(:put => "v1/campgrounds/1/seasons/1").to route_to("api/v1/seasons#update", :campground_id => "1", :id => "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/seasons/1").to route_to("seasons#update", :id => "1")
+      expect(:patch => "v1/campgrounds/1/seasons/1").to route_to("api/v1/seasons#update", :campground_id => "1", :id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/seasons/1").to route_to("seasons#destroy", :id => "1")
+      expect(:delete => "v1/campgrounds/1/seasons/1").to route_to("api/v1/seasons#destroy", :campground_id => "1", :id => "1")
     end
 
   end

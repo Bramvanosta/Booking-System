@@ -1,7 +1,6 @@
-language: php
-
-php:
-- 7.0
+language: ruby
+rvm:
+  - 2.4.1p111
 
 notifications:
   email: false
@@ -27,6 +26,8 @@ before_script:
 
 script:
 - npm run test
+- cd ../api
+- bundle exec rspec
 
 before_deploy:
 - cd ..

@@ -1,32 +1,32 @@
 require "rails_helper"
 
-RSpec.describe RightsController, type: :routing do
+RSpec.describe Api::V1::RightsController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/rights").to route_to("rights#index")
+      expect(:get => "v1/campgrounds/1/rights").to route_to("api/v1/rights#index", :campground_id => "1")
     end
 
 
     it "routes to #show" do
-      expect(:get => "/rights/1").to route_to("rights#show", :id => "1")
+      expect(:get => "v1/campgrounds/1/rights/1").to route_to("api/v1/rights#show", :campground_id => "1", :id => "1")
     end
 
 
     it "routes to #create" do
-      expect(:post => "/rights").to route_to("rights#create")
+      expect(:post => "v1/campgrounds/1/rights").to route_to("api/v1/rights#create", :campground_id => "1")
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/rights/1").to route_to("rights#update", :id => "1")
+      expect(:put => "v1/campgrounds/1/rights/1").to route_to("api/v1/rights#update", :campground_id => "1", :id => "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/rights/1").to route_to("rights#update", :id => "1")
+      expect(:patch => "v1/campgrounds/1/rights/1").to route_to("api/v1/rights#update", :campground_id => "1", :id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/rights/1").to route_to("rights#destroy", :id => "1")
+      expect(:delete => "v1/campgrounds/1/rights/1").to route_to("api/v1/rights#destroy", :campground_id => "1", :id => "1")
     end
 
   end

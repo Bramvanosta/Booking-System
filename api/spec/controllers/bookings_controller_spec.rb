@@ -23,7 +23,7 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe BookingsController, type: :controller do
+RSpec.describe Api::V1::BookingsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Booking. As you add validations to Booking, be sure to
@@ -52,7 +52,7 @@ RSpec.describe BookingsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       booking = Booking.create! valid_attributes
-      get :show, params: {id: booking.to_param}, session: valid_session
+      get :show, params: { id: booking.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
@@ -61,13 +61,13 @@ RSpec.describe BookingsController, type: :controller do
     context "with valid params" do
       it "creates a new Booking" do
         expect {
-          post :create, params: {booking: valid_attributes}, session: valid_session
+          post :create, params: { booking: valid_attributes }, session: valid_session
         }.to change(Booking, :count).by(1)
       end
 
       it "renders a JSON response with the new booking" do
 
-        post :create, params: {booking: valid_attributes}, session: valid_session
+        post :create, params: { booking: valid_attributes }, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
         expect(response.location).to eq(booking_url(Booking.last))
@@ -77,7 +77,7 @@ RSpec.describe BookingsController, type: :controller do
     context "with invalid params" do
       it "renders a JSON response with errors for the new booking" do
 
-        post :create, params: {booking: invalid_attributes}, session: valid_session
+        post :create, params: { booking: invalid_attributes }, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -92,7 +92,7 @@ RSpec.describe BookingsController, type: :controller do
 
       it "updates the requested booking" do
         booking = Booking.create! valid_attributes
-        put :update, params: {id: booking.to_param, booking: new_attributes}, session: valid_session
+        put :update, params: { id: booking.to_param, booking: new_attributes }, session: valid_session
         booking.reload
         skip("Add assertions for updated state")
       end
@@ -100,7 +100,7 @@ RSpec.describe BookingsController, type: :controller do
       it "renders a JSON response with the booking" do
         booking = Booking.create! valid_attributes
 
-        put :update, params: {id: booking.to_param, booking: valid_attributes}, session: valid_session
+        put :update, params: { id: booking.to_param, booking: valid_attributes }, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
@@ -110,7 +110,7 @@ RSpec.describe BookingsController, type: :controller do
       it "renders a JSON response with errors for the booking" do
         booking = Booking.create! valid_attributes
 
-        put :update, params: {id: booking.to_param, booking: invalid_attributes}, session: valid_session
+        put :update, params: { id: booking.to_param, booking: invalid_attributes }, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -121,7 +121,7 @@ RSpec.describe BookingsController, type: :controller do
     it "destroys the requested booking" do
       booking = Booking.create! valid_attributes
       expect {
-        delete :destroy, params: {id: booking.to_param}, session: valid_session
+        delete :destroy, params: { id: booking.to_param }, session: valid_session
       }.to change(Booking, :count).by(-1)
     end
   end

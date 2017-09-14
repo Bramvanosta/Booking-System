@@ -109,7 +109,6 @@ Rails.application.routes.draw do
         resources :bookings
         resources :clients
         resources :payments
-        resources :people
         resources :rental_categories do
           resources :rentals
           resources :seasons, only: [] do

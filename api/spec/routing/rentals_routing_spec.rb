@@ -1,32 +1,32 @@
 require "rails_helper"
 
-RSpec.describe RentalsController, type: :routing do
+RSpec.describe Api::V1::RentalsController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/rentals").to route_to("rentals#index")
+      expect(:get => "v1/campgrounds/1/rental_categories/1/rentals").to route_to("api/v1/rentals#index", :campground_id => "1", :rental_category_id => "1")
     end
 
 
     it "routes to #show" do
-      expect(:get => "/rentals/1").to route_to("rentals#show", :id => "1")
+      expect(:get => "v1/campgrounds/1/rental_categories/1/rentals/1").to route_to("api/v1/rentals#show", :campground_id => "1", :rental_category_id => "1", :id => "1")
     end
 
 
     it "routes to #create" do
-      expect(:post => "/rentals").to route_to("rentals#create")
+      expect(:post => "v1/campgrounds/1/rental_categories/1/rentals").to route_to("api/v1/rentals#create", :campground_id => "1", :rental_category_id => "1")
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/rentals/1").to route_to("rentals#update", :id => "1")
+      expect(:put => "v1/campgrounds/1/rental_categories/1/rentals/1").to route_to("api/v1/rentals#update", :campground_id => "1", :rental_category_id => "1", :id => "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/rentals/1").to route_to("rentals#update", :id => "1")
+      expect(:patch => "v1/campgrounds/1/rental_categories/1/rentals/1").to route_to("api/v1/rentals#update", :campground_id => "1", :rental_category_id => "1", :id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/rentals/1").to route_to("rentals#destroy", :id => "1")
+      expect(:delete => "v1/campgrounds/1/rental_categories/1/rentals/1").to route_to("api/v1/rentals#destroy", :campground_id => "1", :rental_category_id => "1", :id => "1")
     end
 
   end
