@@ -55,6 +55,11 @@ export function authenticationReducer(state = initialState, action: Authenticati
         ...state,
         ...action.payload
       };
+    case (AuthenticationActions.TRY_AUTHENTICATION_VERIFICATION):
+      return {
+        ...state,
+        loading: true
+      };
     case (AuthenticationActions.ON_AUTHENTICATION_ERROR):
       return { ...initialState };
     default:

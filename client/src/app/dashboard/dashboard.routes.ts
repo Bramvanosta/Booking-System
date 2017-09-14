@@ -21,7 +21,7 @@ import { UsersComponent } from './users/users.component';
 
 export const dashboardRoutes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
     canActivate: [AuthenticationGuard, DashboardGuard],
     children: [

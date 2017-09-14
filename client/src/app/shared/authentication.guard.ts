@@ -20,8 +20,8 @@ export class AuthenticationGuard implements CanActivate {
     return this.store.select('authentication')
       .take(1)
       .map((authenticationState: fromAuthentication.State) => {
-        if (!authenticationState.authenticated) {
-          this.router.navigate(['/login']);
+        if (!authenticationState.authenticated && !authenticationState.loading) {
+          this.router.navigate(['/auth/login']);
         }
         return authenticationState.authenticated;
       });

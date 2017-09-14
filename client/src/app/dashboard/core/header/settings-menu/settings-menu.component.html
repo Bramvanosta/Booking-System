@@ -5,12 +5,12 @@
 
     <a md-menu-item
        class="c-settings-menu__link"
-       routerLink="/dashboard/rentals"
+       routerLink="/rentals"
        routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_edit_campground">Rentals</a>
     <a md-menu-item
        class="c-settings-menu__link"
-       routerLink="/dashboard/prices"
+       routerLink="/prices"
        routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_edit_campground">Prices</a>
 
@@ -24,17 +24,17 @@
 
     <a md-menu-item
        class="c-settings-menu__link"
-       routerLink="/dashboard/rights"
+       routerLink="/rights"
        routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_view_rights">Rights</a>
     <a md-menu-item
        class="c-settings-menu__link"
-       routerLink="/dashboard/api-keys"
+       routerLink="/api-keys"
        routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_view_api_keys">API Keys</a>
     <a md-menu-item
        class="c-settings-menu__link"
-       routerLink="/dashboard/users"
+       routerLink="/users"
        routerLinkActive="active"
        *ngIf="(rightsState | async).rights.can_view_users">Users</a>
   </md-menu>

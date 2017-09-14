@@ -7,7 +7,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
 
 export const authenticationRoutes: Routes = [
   {
-    path: '',
+    path: 'auth',
     component: AuthenticationComponent,
     children: [
       { path: 'login', component: SigninComponent, data: { state: 'login' } },

@@ -31,7 +31,7 @@ export class AuthenticationEffects {
       })
         .map((json: { data }) => json.data)
         .map((user: User) => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/']);
           return {
             type: AuthenticationActions.SIGNIN,
             payload: {
@@ -58,7 +58,7 @@ export class AuthenticationEffects {
       })
         .map((data: { message: string }) => {
           this.snackBar.open(data.message, 'hide', { duration: 6000 });
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth/login']);
           return {
             type: AuthenticationActions.RESET_PASSWORD
           }
@@ -73,14 +73,14 @@ export class AuthenticationEffects {
     .ofType(AuthenticationActions.TRY_UPDATE_PASSWORD)
     .map(toPayload)
     .mergeMap((payload: { password: string, passwordConfirmation: string, resetPasswordToken: string }) => {
-      return this.httpClient.put('uth/password', {
+      return this.httpClient.put('auth/password', {
         password: payload.password,
         password_confirmation: payload.passwordConfirmation,
         reset_password_token: payload.resetPasswordToken
       })
         .map((data: { message: string }) => {
           this.snackBar.open(data.message, 'hide', { duration: 6000 });
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth/login']);
           return {
             type: AuthenticationActions.RESET_PASSWORD
           }
@@ -109,7 +109,7 @@ export class AuthenticationEffects {
       localStorage.removeItem('expiry');
       localStorage.removeItem('uid');
       localStorage.removeItem('current-campground-id');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth/login']);
     });
 
   @Effect() authenticationVerification = this.actions$
@@ -118,7 +118,7 @@ export class AuthenticationEffects {
       return this.httpClient.get('auth/validate_token')
         .map((json: { data }) => json.data)
         .map((user: User) => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/']);
           return {
             type: AuthenticationActions.SIGNIN,
             payload: {
