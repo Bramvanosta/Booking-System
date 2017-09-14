@@ -5,15 +5,22 @@ import * as CampgroundsActions from './campgrounds.actions';
 export interface State {
   campgrounds: Campground[];
   currentCampground: Campground;
+  loading: boolean;
 }
 
 const initialState: State = {
   campgrounds: [],
-  currentCampground: null
+  currentCampground: null,
+  loading: false
 };
 
 export function campgroundsReducer(state = initialState, action: CampgroundsActions.CampgroundsActions) {
   switch (action.type) {
+    case (CampgroundsActions.FETCH_CAMPGROUNDS):
+      return {
+        ...state,
+        loading: true
+      };
     case (CampgroundsActions.SET_CAMPGROUNDS):
       return {
         ...state,
@@ -23,7 +30,8 @@ export function campgroundsReducer(state = initialState, action: CampgroundsActi
       const currentCampground = state.campgrounds.find((campground) => campground.id === action.payload);
       return {
         ...state,
-        currentCampground: currentCampground
+        currentCampground: currentCampground,
+        loading: false
       };
     case (CampgroundsActions.ON_CAMPGROUNDS_ERROR):
       return { ...initialState };
