@@ -1,0 +1,85 @@
+FORMAT: 1A
+HOST: https://api.booking-system.bramvanosta.com/
+
+# Booking System
+
+Booking System is an application which helps manage bookings for campgrounds.
+
+## Campgrounds Collection [/v1/campgrounds]
+
+### List All Campgrounds [GET]
+
++ Request (application/json)
+
+    + Headers
+    
+            access-token: facxzlZ_gSqGqzBZYe0XKQ
+            client: RsMVhBPgvqHO0gUktowP0w
+            uid: user@test.com
+            expiry:1506628130
+            token-type:Bearer
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Camping Lestaubière",
+                "address": "Camping Lestaubière, Pont Saint Mamet",
+                "zip_code": "24140",
+                "city": "Douville",
+                "country": "France",
+                "longitude": 0.598711,
+                "latitude": 44.992392,
+                "logo_url": "http://url-to-my-logo.com",
+                "website_url": "http://camping-lestaubiere.fr",
+                "phone_number": "0501050604",
+                "mobile_number": "0601052878"
+            }
+        ]
+
+### Create a New Campground [POST]
+
+            
++ Request (application/json)
+
+    + Headers
+    
+            access-token: facxzlZ_gSqGqzBZYe0XKQ
+            client: RsMVhBPgvqHO0gUktowP0w
+            uid: user@test.com
+            expiry:1506628130
+            token-type:Bearer
+   
+   + Body 
+
+            {
+                "name": "Camping Lestaubière",
+                "address": "Camping Lestaubière, Pont Saint Mamet",
+                "zip_code": "24140",
+                "city": "Douville",
+                "country": "France",
+                "logo_url": "http://url-to-my-logo.com",
+                "website_url": "http://camping-lestaubiere.fr",
+                "phone_number": "0501050604",
+                "mobile_number": "0601052878"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "id": 1,
+                "name": "Camping Lestaubière",
+                "address": "Camping Lestaubière, Pont Saint Mamet",
+                "zip_code": "24140",
+                "city": "Douville",
+                "country": "France",
+                "longitude": 0.598711,
+                "latitude": 44.992392,
+                "logo_url": "http://url-to-my-logo.com",
+                "website_url": "http://camping-lestaubiere.fr",
+                "phone_number": "0501050604",
+                "mobile_number": "0601052878"
+            }
