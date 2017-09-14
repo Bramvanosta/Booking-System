@@ -12,10 +12,17 @@ development:
 
 test:
   <<: *default
-  database: app_test
+  database: booking-system_test
   username: user
   password: password
   host: bs_api_db
+
+test:
+  <<: *default
+  database: booking-system_travis
+  username: travis
+  password:
+  host: 127.0.0.1
 
 staging:
   <<: *default
@@ -27,6 +34,6 @@ staging:
 
 production:
   <<: *default
-  database: app_production
+  database: booking-system_production
   username: app
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>

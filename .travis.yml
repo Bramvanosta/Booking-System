@@ -25,9 +25,11 @@ before_script:
 - npm install
 - cd ../api
 - bundle install
+- RAILS_ENV=travis rails db:create
+- RAILS_ENV=travis rails db:migrate
 
 script:
-- bundle exec rspec
+- RAILS_ENV=travis bundle exec rspec
 - cd ../client
 - npm run test
 
