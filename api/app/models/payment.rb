@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  booking_id     :integer
-#  price_cents    :integer          default("0"), not null
+#  price_cents    :integer          default(0), not null
 #  price_currency :string           default("EUR"), not null
 #  method         :string
 #  created_at     :datetime         not null

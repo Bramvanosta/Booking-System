@@ -3,6 +3,7 @@
 # Table name: clients
 #
 #  id            :integer          not null, primary key
+#  campground_id :integer
 #  title         :string           not null
 #  first_name    :string           not null
 #  last_name     :string           not null
