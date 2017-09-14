@@ -17,7 +17,7 @@ test:
   password: password
   host: bs_api_db
 
-test:
+travis:
   <<: *default
   database: booking-system_travis
   username: travis

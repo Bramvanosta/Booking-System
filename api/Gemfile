@@ -43,6 +43,6 @@ group :development, :staging do
   gem 'faker'
 end
 
-group :test do
+group :test, :travis do
   gem 'factory_girl_rails', '~> 4.0'
 end
