@@ -36,12 +36,3 @@ RAILS_ENV=staging rails db:migrate
 # Populate Rails database
 echo "### Populating this Rails database ###"
 RAILS_ENV=staging rails db:populate
-
-# Activate all the created users
-echo "### Activating the created users ###"
-echo 'User.find(1).confirm' | rails console
-echo 'User.find(2).confirm' | rails console
-echo 'User.find(3).confirm' | rails console
-echo 'User.find(4).confirm' | rails console
-echo 'User.find(5).confirm' | rails console
-echo 'User.find(6).confirm' | rails console

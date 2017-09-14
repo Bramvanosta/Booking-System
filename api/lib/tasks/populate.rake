@@ -21,6 +21,8 @@ namespace :db do
           password: 'password'
       )
 
+      user.confirm
+
       # Create an admin
       admin = User.create!(
           first_name: Faker::Name.first_name,
@@ -28,6 +30,8 @@ namespace :db do
           email: "admin#{n}@test.fr",
           password: 'password'
       )
+
+      admin.confirm
 
       # Create an user without rights
       loser = User.create!(
@@ -37,7 +41,9 @@ namespace :db do
           password: 'password'
       )
 
-      puts 'Users created'
+      loser.confirm
+
+      puts 'Users created and activated'
 
       # Create two campground
       2.times do |n|
