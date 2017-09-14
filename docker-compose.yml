@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services:
   bs_api:
@@ -6,6 +6,10 @@ services:
     build: ./api
     volumes:
       - ./api:/var/www/html/api
+    depends_on:
+      bs_api_db:
+        condition: service_healthy
+
 
   bk_nginx:
     container_name: bs_nginx
@@ -14,6 +18,10 @@ services:
       - ./logs:/var/www/logs
     ports:
       - 80:80
+    depends_on:
+      bs_api_db:
+        condition: service_healthy
+
 
   bs_api_db:
     container_name: bs_api_db
@@ -21,6 +29,11 @@ services:
     environment:
       - "POSTGRES_USER=user"
       - "POSTGRES_PASSWORD=password"
+    healthcheck:
+      test: psql -U user -w --list
+      interval: 2s
+      timeout: 5s
+      retries: 30
 
   bs_client:
     container_name: bs_client

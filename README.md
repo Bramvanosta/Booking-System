@@ -19,11 +19,7 @@
 3. Prepare the environments:
     ```bash
     ./scripts/installDevelopment.sh
-    ```  
-4. You might need to restart the docker container:
-    ```bash
-    docker-compose restart
-    ```  
+    ``` 
 4. Point the container's IP address to the right hosts by adding these three lines to the `/etc/hosts` file:
     ```bash
     127.0.0.1       api.booking-system.dev
