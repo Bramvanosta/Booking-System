@@ -17,6 +17,10 @@
 #  updated_at    :datetime         not null
 #  campground_id :integer
 #
+# Indexes
+#
+#  index_clients_on_campground_id  (campground_id)
+#
 
 require 'rails_helper'
 

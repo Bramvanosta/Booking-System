@@ -11,6 +11,16 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
+# Indexes
+#
+#  index_prices_on_rental_category_id  (rental_category_id)
+#  index_prices_on_season_id           (season_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (rental_category_id => rental_categories.id)
+#  fk_rails_...  (season_id => seasons.id)
+#
 
 class Price < ApplicationRecord
 

@@ -11,6 +11,16 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
+# Indexes
+#
+#  index_bookings_on_campground_id  (campground_id)
+#  index_bookings_on_client_id      (client_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (campground_id => campgrounds.id)
+#  fk_rails_...  (client_id => clients.id)
+#
 
 class Booking < ApplicationRecord
 

@@ -27,6 +27,16 @@
 #  can_edit_users      :boolean          default(FALSE), not null
 #  can_delete_users    :boolean          default(FALSE), not null
 #
+# Indexes
+#
+#  index_rights_on_campground_id  (campground_id)
+#  index_rights_on_user_id        (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (campground_id => campgrounds.id)
+#  fk_rails_...  (user_id => users.id)
+#
 
 require 'rails_helper'
 

@@ -8,6 +8,16 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_booking_has_rentals_on_booking_id  (booking_id)
+#  index_booking_has_rentals_on_rental_id   (rental_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (booking_id => bookings.id)
+#  fk_rails_...  (rental_id => rentals.id)
+#
 
 require 'rails_helper'
 

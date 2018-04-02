@@ -10,6 +10,14 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
+# Indexes
+#
+#  index_seasons_on_campground_id  (campground_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (campground_id => campgrounds.id)
+#
 
 class Season < ApplicationRecord
 

@@ -12,6 +12,17 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
+# Indexes
+#
+#  index_api_keys_on_campground_id  (campground_id)
+#  index_api_keys_on_token          (token) UNIQUE
+#  index_api_keys_on_user_id        (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (campground_id => campgrounds.id)
+#  fk_rails_...  (user_id => users.id)
+#
 
 require 'rails_helper'
 

@@ -8,6 +8,14 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
+# Indexes
+#
+#  index_rentals_on_rental_category_id  (rental_category_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (rental_category_id => rental_categories.id)
+#
 
 require 'rails_helper'
 

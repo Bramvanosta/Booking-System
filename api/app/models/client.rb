@@ -3,7 +3,6 @@
 # Table name: clients
 #
 #  id            :integer          not null, primary key
-#  campground_id :integer
 #  title         :string           not null
 #  first_name    :string           not null
 #  last_name     :string           not null
@@ -16,6 +15,11 @@
 #  mobile_number :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  campground_id :integer
+#
+# Indexes
+#
+#  index_clients_on_campground_id  (campground_id)
 #
 
 class Client < ApplicationRecord
